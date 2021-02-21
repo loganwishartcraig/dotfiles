@@ -1,0 +1,7 @@
+[pull]
+	rebase = true
+[user]
+	name = Logan Wishart-Craig
+	email = loganwishartcraig@gmail.com
+[includeIf "gitdir:~/Work/"]
+	path = ~/Work/.gitconfig
