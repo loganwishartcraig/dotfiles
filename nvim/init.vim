@@ -43,7 +43,7 @@ call plug#end()
 
 " CocConfig
 
-let g:coc_global_extensions = ['coc-css', 'coc-cssmodules', 'coc-eslint', 'coc-explorer', 'coc-json', 'coc-prettier', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-css', 'coc-cssmodules', 'coc-eslint', 'coc-explorer', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-snippets']
 
 call coc#config("eslint.autoFixOnSave", v:true)
 call coc#config("typescript.showUnused", v:false)
@@ -75,9 +75,21 @@ call coc#config("languageserver", {
 	\}
 \})
 
+" Coc-Prettier config
+"call coc#config("prettier", {
+	"\ "eslintIntegration": v:true,
+	"\ "tslintIntegration": v:true,
+	"\ "stylelintIntegration": v:true
+"\})
+
 " Coc-Explorer config
 call coc#config("explorer.keyMappings.global", {
-	\ "<cr>": ["wait", "expandable?", ["expanded?", "collapse", "expand"], "open"]
+	\ "<cr>": ["wait", "expandable?", ["expanded?", "collapse", "expand"], "open"],
+	\ "S": "open:vsplit",
+	\ "[[": ["wait", "indentPrev"],
+	\ "]]": ["wait", "indentNext"],
+	\ "[{": ["wait", "sourcePrev"],
+	\ "]}": ["wait", "sourceNext"]
 \})
 
 call coc#config("explorer.width", 30)
@@ -88,7 +100,17 @@ call coc#config("explorer.file.showHiddenFiles", v:true)
 
 noremap <silent> <leader>o :CocCommand explorer<CR>
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 inoremap <silent><expr> <C-Space> coc#refresh()
@@ -219,6 +241,7 @@ nnoremap <silent> <F3> :noh<CR>
 "nnoremap <silent> <Leader>- :resize -10<CR>
 nnoremap <silent> <Leader>> :vertical resize +10<CR>
 nnoremap <silent> <Leader>< :vertical resize -10<CR>
+nnoremap <leader>= <C-W>=
 
 " fugitive
 nnoremap <silent> <leader>gd :Gvdiff<CR>
@@ -227,6 +250,15 @@ nnoremap <silent> gdl :diffget //3<CR>
 
 " Quick open adjacent file
 nnoremap <leader>la :e <C-R>=expand('%:h')."/"<CR>
+
+" Remap backtick for easier mark jumping
+nnoremap ' `
+
+" Remap to quick delete buffers
+nnoremap <silent> <leader>c :bd<CR>
+
+" Paste without overwriting buffer (safe paste).
+xnoremap sp "_dP
 
 "#######################
 "##  Custom Commands  ##

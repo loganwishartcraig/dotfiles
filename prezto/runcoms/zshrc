@@ -20,8 +20,10 @@ path+=('~/.local/bin')
 alias fd=fdfind
 export FZF_DEFAULT_COMMAND='fdfind --type f'
 
+# Custom aliases
 alias vim=nvim
 alias :q=exit
+alias gmmk='xkbcomp ~/gmmk_cust $DISPLAY'
 
 # Custom functions
 mkcd () {
@@ -36,3 +38,5 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# nnn - CD on Quit
+[ -f ~/.scripts/nnn/quitcd.zsh ] && source ~/.scripts/nnn/quitcd.zsh
