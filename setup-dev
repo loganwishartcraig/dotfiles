@@ -4,7 +4,7 @@
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
 # install tools
-sudo apt install -y git neovim python3-neovim zsh curl fd-find nvm unzip silversearcher-ag
+sudo apt install -y git neovim python3-neovim zsh curl fd-find unzip silversearcher-ag
 
 # install nvm
 mkdir -p ${ZDOTDIR:-$HOME}/.nvm
@@ -47,16 +47,19 @@ cp /tmp/vim-kitty-navigator/*.py ${ZDOTDIR:-$HOME}/.config/kitty
 chsh -s $(which zsh)
 
 /usr/bin/zsh << 'EOF'
-# finish nvm install
-nvm install node
 
+# Finish Prezto install
 setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
-
 ln -s -f ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zpreztorc ${ZDOTDIR:-$HOME}/.zpreztorc
 ln -s -f ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc ${ZDOTDIR:-$HOME}/.zshrc
+
+source ${ZDOTDIR:-$HOME}/.zshrc
+
+# finish nvm install
+nvm install node
 
 # Kitty term desktop integration
 sudo ln -s ${ZDOTDIR:-$HOME}/.local/kitty.app/bin/kitty /usr/local/bin/
@@ -66,5 +69,4 @@ sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x2
 
 # Setup VimPlug and CoC
 nvim -c ":PlugInstall"
-nvim -c ":CocInstall"
 EOF
