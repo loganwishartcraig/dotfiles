@@ -43,7 +43,7 @@ call plug#end()
 
 " CocConfig
 
-let g:coc_global_extensions = ['coc-css', 'coc-cssmodules', 'coc-eslint', 'coc-explorer', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-snippets']
+let g:coc_global_extensions = ['coc-css', 'coc-cssmodules', 'coc-eslint', 'coc-explorer', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-snippets', 'coc-pyright']
 
 call coc#config("eslint.autoFixOnSave", v:true)
 call coc#config("typescript.showUnused", v:false)

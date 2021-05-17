@@ -38,11 +38,11 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
+  'history-substring-search' \
+  'prompt' \
   'command-not-found' \
   'syntax-highlighting' \
-  'history-substring-search' \
   'autosuggestions' \
-  'prompt' \
   'git' \
   'tmux'
 
@@ -139,7 +139,7 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 #
 
 # Auto switch the Python virtualenv on directory change.
-# zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
+zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
 
 # Automatically initialize virtualenvwrapper if pre-requisites are met.
 # zstyle ':prezto:module:python:virtualenv' initialize 'yes'
