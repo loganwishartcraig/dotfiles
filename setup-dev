@@ -63,4 +63,8 @@ sudo ln -s ${ZDOTDIR:-$HOME}/.local/kitty.app/bin/kitty /usr/local/bin/
 mkdir -p ${ZDOTDIR:-$HOME}/.local/share/applications
 cp ${ZDOTDIR:-$HOME}/.local/kitty.app/share/applications/kitty.desktop ${ZDOTDIR:-$HOME}/.local/share/applications/
 sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ${ZDOTDIR:-$HOME}/.local/share/applications/kitty.desktop
+
+# Setup VimPlug and CoC
+nvim -c ":PlugInstall"
+nvim -c ":CocInstall"
 EOF
