@@ -4,7 +4,7 @@
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
 # install tools
-sudo apt install -y git neovim python3-neovim zsh curl fd-find nvim unzip silversearcher-ag
+sudo apt install -y git neovim python3-neovim zsh curl fd-find unzip silversearcher-ag
 
 # install nvm
 mkdir -p ${ZDOTDIR:-$HOME}/.nvm
