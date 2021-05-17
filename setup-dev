@@ -46,4 +46,21 @@ cp /tmp/vim-kitty-navigator/*.py ${ZDOTDIR:-$HOME}/.config/kitty
 # switch shell to zsh
 chsh -s $(which zsh)
 
+/usr/bin/zsh << 'EOF'
+# finish nvm install
+nvm install node
 
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+
+ln -s -f ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zpreztorc ${ZDOTDIR:-$HOME}/.zpreztorc
+ln -s -f ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc ${ZDOTDIR:-$HOME}/.zshrc
+
+# Kitty term desktop integration
+sudo ln -s ${ZDOTDIR:-$HOME}/.local/kitty.app/bin/kitty /usr/local/bin/
+mkdir -p ${ZDOTDIR:-$HOME}/.local/share/applications
+cp ${ZDOTDIR:-$HOME}/.local/kitty.app/share/applications/kitty.desktop ${ZDOTDIR:-$HOME}/.local/share/applications/
+sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ${ZDOTDIR:-$HOME}/.local/share/applications/kitty.desktop
+EOF
