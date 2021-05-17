@@ -33,9 +33,9 @@ ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/prezto/modules/prompt/functions/prompt_para
 ln -s -f ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc ${ZDOTDIR:-$HOME}/.zshrc
 
 # Install fira-code font
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+wget -P /tmp https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 mkdir -p ${ZDOTDIR:-$HOME}/.local/share/fonts
-unzip FiraCode.zip -d ${ZDOTDIR:-$HOME}/.local/share/fonts
+unzip /tmp/FiraCode.zip -d ${ZDOTDIR:-$HOME}/.local/share/fonts
 fc-cache -f -v
 
 # Install vim kitty navigator
