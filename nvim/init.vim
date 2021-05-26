@@ -221,6 +221,7 @@ nnoremap <leader>c# #``cgN
 nnoremap <silent> <leader><bar> :vsplit<CR>
 nnoremap <silent> <leader>- :split<CR>
 nnoremap <silent> <leader>q :close<CR>
+nnoremap <silent> <F2> <C-w><C-o>
 
 " Open explorer
 "nnoremap <silent> <leader>o :Lex<CR>
@@ -248,9 +249,10 @@ nnoremap <silent> <leader>gd :Gvdiff<CR>
 nnoremap <silent> <leader>gh :diffget //2<CR>
 nnoremap <silent> <leader>gl :diffget //3<CR>
 nnoremap <silent> <leader>gs :G<CR>
-nnoremap  <leader>gc :Git checkout 
 nnoremap <silent> <leader>gm :Git commit<CR>
+nnoremap <silent> <leader>gg :Gclog<CR>
 nnoremap <silent> <leader>gpy :Git push<CR>
+nnoremap  <leader>gc :Git checkout 
 
 " Quick open adjacent file
 nnoremap <leader>la :e <C-R>=expand('%:h')."/"<CR>
