@@ -245,11 +245,12 @@ nnoremap <leader>= <C-W>=
 
 " fugitive
 nnoremap <silent> <leader>gd :Gvdiff<CR>
-nnoremap <silent> <leader>gh :diffget //3<CR>
-nnoremap <silent> <leader>gu :diffget //2<CR>
+nnoremap <silent> <leader>gh :diffget //2<CR>
+nnoremap <silent> <leader>gl :diffget //3<CR>
 nnoremap <silent> <leader>gs :G<CR>
-nnoremap <silent> <leader>gc :Git commit<CR>
-nnoremap <silent> <leader>gp :Git push<CR>
+nnoremap  <leader>gc :Git checkout 
+nnoremap <silent> <leader>gm :Git commit<CR>
+nnoremap <silent> <leader>gpy :Git push<CR>
 
 " Quick open adjacent file
 nnoremap <leader>la :e <C-R>=expand('%:h')."/"<CR>
@@ -277,13 +278,6 @@ command! BufOnly silent! execute "%bd|e#|bd#"
 set termguicolors
 syntax enable
 
-"let g:miramare_enable_italic = 1
-"let g:miramare_disable_italic_comment = 1
-"let g:oceanic_next_terminal_bold = 1
-"let g:oceanic_next_terminal_italic = 1
-
-"colorscheme miramare
-"colorscheme OceanicNext
 colorscheme pink-moon
 
 "#######################
@@ -299,10 +293,21 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
+let g:currentmode={
+       \ 'n'  : 'NORMAL ',
+       \ 'v'  : 'VISUAL ',
+       \ 'V'  : 'V·Line ',
+       \ "\<C-V>" : 'V·Block ',
+       \ 'i'  : 'INSERT ',
+       \ 'R'  : 'R ',
+       \ 'Rv' : 'V·Replace ',
+       \ 'c'  : 'Command ',
+       \}
+
 set statusline=                                 " Clear
+set statusline+=\ %{toupper(g:currentmode[mode()])}
 set statusline+=%#PmenuSel#						" Color
 set statusline+=%{StatuslineGit()}				" git status
-"set statusline+=%#CursorColumn#						" Color
 set statusline+=%#LineNr#						" Color
 set statusline+=\ %f                            " Filename
 set statusline+=%h                              " Help file flag
@@ -310,7 +315,6 @@ set statusline+=%r                              " Read only flag
 set statusline+=%m                              " Modified flag
 set statusline+=%=                              " Left/right separator
 set statusline+=\ \                             " --
-"set statusline+=%#CursorColumn#					" Color
 set statusline+=%{&filetype}                    " Filetype
 set statusline+=\ \                             " --
 set statusline+=[%{&fenc}]                        " File encoding
@@ -320,11 +324,23 @@ set statusline+=%{&expandtab?\"sp\":\"tab\"}\   " Indent settings
 set statusline+=%{&shiftwidth}                  " Indent settings
 set statusline+=]                               " Indent settings: end
 set statusline+=\ \                             " --
-set statusline+=%l\:%L                          " Cursor line/total lines
+set statusline+=[%l\,%02v]:%L                          " Cursor line/total lines
+
+"#######################
+"###  Relative Lines  ##
+"#######################
+:set number relativenumber
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
 
 "#######################
 "###  General Config  ##
 "#######################
+
 
 " Allow editing multiple unsaved buffers
 set hidden
@@ -354,6 +370,9 @@ set splitright
 " Set mouse scroll
 set mouse=a
 
+" Don't show mode as it's shown in the status bar
+set noshowmode
+
 " Dont show last command
 set noshowcmd
 
@@ -370,3 +389,4 @@ let &titlestring='%t - nvim'
 
 " Update time
 set updatetime=300
+
