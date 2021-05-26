@@ -298,12 +298,13 @@ endfunction
 let g:currentmode={
        \ 'n'  : 'NORMAL ',
        \ 'v'  : 'VISUAL ',
-       \ 'V'  : 'V·Line ',
-       \ "\<C-V>" : 'V·Block ',
+       \ 'V'  : 'V-Line ',
+       \ "\<C-V>" : 'V-Block ',
        \ 'i'  : 'INSERT ',
        \ 'R'  : 'R ',
-       \ 'Rv' : 'V·Replace ',
+       \ 'Rv' : 'V-Replace ',
        \ 'c'  : 'Command ',
+       \ 't'  : 'Terminal ',
        \}
 
 set statusline=                                 " Clear
