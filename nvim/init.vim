@@ -249,6 +249,7 @@ nnoremap <silent> <leader>gh :diffget //3<CR>
 nnoremap <silent> <leader>gu :diffget //2<CR>
 nnoremap <silent> <leader>gs :G<CR>
 nnoremap <silent> <leader>gc :Git commit<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
 
 " Quick open adjacent file
 nnoremap <leader>la :e <C-R>=expand('%:h')."/"<CR>
