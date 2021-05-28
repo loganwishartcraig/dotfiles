@@ -332,7 +332,7 @@ set statusline+=[%l\,%02v]:%L                          " Cursor line/total lines
 "#######################
 "###  Relative Lines  ##
 "#######################
-:set number relativenumber
+set number relativenumber
 
 :augroup numbertoggle
 :  autocmd!
