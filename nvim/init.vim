@@ -81,6 +81,11 @@ call coc#config("languageserver", {
 	"\ "tslintIntegration": v:true,
 	"\ "stylelintIntegration": v:true
 "\})
+call coc#config("prettier", {
+	\ "tabWidth": 4,
+	\ "printWidth": 160
+\})
+
 
 " Coc-Explorer config
 call coc#config("explorer.keyMappings.global", {
@@ -332,6 +337,7 @@ set statusline+=[%l\,%02v]:%L                          " Cursor line/total lines
 "#######################
 "###  Relative Lines  ##
 "#######################
+
 set number relativenumber
 
 :augroup numbertoggle
@@ -344,16 +350,12 @@ set number relativenumber
 "###  General Config  ##
 "#######################
 
-
 " Allow editing multiple unsaved buffers
 set hidden
 
 " Default fold method to syntax. Auto open all folds
 set foldmethod=syntax
 set foldlevelstart=20
-
-" Show line nums
-set number
 
 " Tab config
 set tabstop=4
