@@ -1,7 +1,21 @@
+[init]
+	defaultBranch = main
 [pull]
 	rebase = true
 [user]
 	name = Logan Wishart-Craig
 	email = loganwishartcraig@gmail.com
+[color]
+    ui = auto
+[merge]
+	ff = only
+[fetch]
+	prune = true
+[rebase]
+	autosquash = true
+[diff]
+	colorMoved = zebra
+[push]
+	default = current
 [includeIf "gitdir:~/Work/"]
 	path = ~/Work/.gitconfig
