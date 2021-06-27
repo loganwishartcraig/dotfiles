@@ -28,6 +28,10 @@ Plug 'sbdchd/neoformat'
 Plug 'alvan/vim-closetag'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'arthurxavierx/vim-caser'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 " Themes
 Plug 'sts10/vim-pink-moon'
 
@@ -214,6 +218,30 @@ let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"] = '<C-M-j>'
 let g:VM_maps["Add Cursor Up"] = '<C-M-k>'
 
+"#################
+"# Goyo/Limelight
+"#################
+
+let g:limelight_default_coefficient = 0.8
+
+function! s:goyo_enter()
+	autocmd! numbertoggle
+	set nonumber
+	set norelativenumber
+	set linebreak 
+	set scrolloff=999
+	Limelight
+endfunction
+
+function! s:goyo_leave()
+	set nolinebreak
+	set scrolloff=10
+	Limelight!
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 "#######################
 "###  Key Remappings  ##
 "#######################
@@ -270,6 +298,9 @@ nnoremap <silent> <leader>c :bd<CR>
 
 " Paste without overwriting buffer (safe paste).
 xnoremap sp "_dP
+
+" Faster selection of first spelling correction
+nnoremap <silent> <leader>zz 1z=E
 
 "#######################
 "##  Custom Commands  ##
@@ -374,6 +405,9 @@ set splitright
 
 " Set mouse scroll
 set mouse=a
+
+" Set scroll offset to allow scrolling before end of buffer
+set scrolloff=10
 
 " Don't show mode as it's shown in the status bar
 set noshowmode
