@@ -195,6 +195,7 @@ let g:camelcasemotion_key = '<leader>'
 "# CloseTag
 "#################
 
+
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.tsx'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
 let g:closetag_filetypes = 'html,xhtml,phtml,typescriptreact,javascriptreact'
