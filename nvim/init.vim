@@ -390,6 +390,7 @@ set foldmethod=syntax
 set foldlevelstart=20
 
 " Tab config
+set expandtab
 set tabstop=4
 set shiftwidth=4
 
