@@ -12,28 +12,30 @@ let mapleader = " "
 
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'neoclide/coc.nvim', { 'branch': 'release'}
-Plug 'knubie/vim-kitty-navigator'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdcommenter'
 Plug 'bkad/CamelCaseMotion'
-Plug 'sheerun/vim-polyglot'
-Plug 'editorconfig/editorconfig-vim'        
 Plug 'tpope/vim-eunuch'
-Plug 'sbdchd/neoformat'
 Plug 'alvan/vim-closetag'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'arthurxavierx/vim-caser'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 " Themes
-Plug 'sts10/vim-pink-moon'
+
+if !exists('g:vscode')
+    Plug 'neoclide/coc.nvim', { 'branch': 'release'}
+    Plug 'knubie/vim-kitty-navigator'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/limelight.vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'editorconfig/editorconfig-vim'        
+    Plug 'sbdchd/neoformat'
+    Plug 'sts10/vim-pink-moon'
+endif
 
 call plug#end()
 
@@ -46,144 +48,171 @@ call plug#end()
 "#################
 
 " CocConfig
+"
+if !exists('g:vscode')
 
-let g:coc_global_extensions = ['coc-css', 'coc-cssmodules', 'coc-eslint', 'coc-explorer', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-snippets', 'coc-pyright']
+    let g:coc_global_extensions = ['coc-css', 'coc-cssmodules', 'coc-eslint', 'coc-explorer', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-snippets', 'coc-pyright']
 
-call coc#config("eslint.autoFixOnSave", v:true)
-call coc#config("typescript.showUnused", v:false)
-call coc#config("coc.preferences", { 
-	\ "formatOnSaveFiletypes": [
-	\ 	"css", 
-	\	"js", 
-	\	"javascriptreact", 
-	\	"ts", 
-	\	"typescriptreact", 
-	\	"html", 
-	\	"scss", 
-	\	"sass",
-	\	"c"
-\]})
-call coc#config("languageserver", {
-	\ "ccls": {
-	\	"command": "ccls",
-	\	"filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-	\	"rootPatterns": [".ccls-root", "compile_commands.json"],
-	\	"initializationOptions": {
-	\		"cache": {
-	\			"directory": ".ccls-cache"
-	\		},
-	\		"client": {
-	\			"snippetSupport": v:true
-	\		}
-	\	}
-	\}
-\})
+    call coc#config("eslint.autoFixOnSave", v:true)
+    call coc#config("typescript.showUnused", v:false)
+    call coc#config("coc.preferences", { 
+        \ "formatOnSaveFiletypes": [
+        \ 	"css", 
+        \	"js", 
+        \	"javascriptreact", 
+        \	"ts", 
+        \	"typescriptreact", 
+        \	"html", 
+        \	"scss", 
+        \	"sass",
+        \	"c"
+    \]})
+    call coc#config("languageserver", {
+        \ "ccls": {
+        \	"command": "ccls",
+        \	"filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+        \	"rootPatterns": [".ccls-root", "compile_commands.json"],
+        \	"initializationOptions": {
+        \		"cache": {
+        \			"directory": ".ccls-cache"
+        \		},
+        \		"client": {
+        \			"snippetSupport": v:true
+        \		}
+        \	}
+        \}
+    \})
 
-" Coc-Prettier config
-"call coc#config("prettier", {
-	"\ "eslintIntegration": v:true,
-	"\ "tslintIntegration": v:true,
-	"\ "stylelintIntegration": v:true
-"\})
-call coc#config("prettier", {
-	\ "tabWidth": 4,
-	\ "printWidth": 160
-\})
-
-
-" Coc-Explorer config
-call coc#config("explorer.keyMappings.global", {
-	\ "<cr>": ["wait", "expandable?", ["expanded?", "collapse", "expand"], "open"],
-	\ "S": "open:vsplit",
-	\ "[[": ["wait", "indentPrev"],
-	\ "]]": ["wait", "indentNext"],
-	\ "[{": ["wait", "sourcePrev"],
-	\ "]}": ["wait", "sourceNext"]
-\})
-
-call coc#config("explorer.width", 30)
-call coc#config("explorer.quitOnOpen", v:true)
-call coc#config("explorer.icon.enableNerdfont", v:true)
-call coc#config("explorer.icon.enableDevicons", v:true)
-call coc#config("explorer.file.showHiddenFiles", v:true)
-
-noremap <silent> <leader>o :CocCommand explorer<CR>
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-inoremap <silent><expr> <C-Space> coc#refresh()
-nmap <leader>qf <Plug>(coc-fix-current)
-
-"GoTo code navigation
-nmap <leader>g <C-o>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> ]e <Plug>(coc-diagnostic-next-error)
-nmap <silent> [e <Plug>(coc-diagnostic-prev-error)
-nmap <silent> ]w <Plug>(coc-diagnostic-next)
-nmap <silent> [w <Plug>(coc-diagnostic-prev)
-
-nmap <leader>rn <Plug>(coc-rename)
-
-"Help on K
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else 
-		call CocAction('doHover')
-	endif
-endfunction
-
-"au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
-
-"show all diagnostics.
-nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
-"manage extensions.
-nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
-
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=0 Format :call CocAction('format')
-nmap <silent> <leader>p :call CocAction('format')<CR>;
-
-" # Coc-Prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-"nmap <silent> <leader>p :CocCommand prettier.formatFile<CR>
-vmap <leader>p <Plug>(coc-format-selected)
+    " Coc-Prettier config
+    "call coc#config("prettier", {
+        "\ "eslintIntegration": v:true,
+        "\ "tslintIntegration": v:true,
+        "\ "stylelintIntegration": v:true
+    "\})
+    call coc#config("prettier", {
+        \ "tabWidth": 4,
+        \ "printWidth": 160
+    \})
 
 
-"#################
-"# Kitty Navigator
-"#################
+    " Coc-Explorer config
+    call coc#config("explorer.keyMappings.global", {
+        \ "<cr>": ["wait", "expandable?", ["expanded?", "collapse", "expand"], "open"],
+        \ "S": "open:vsplit",
+        \ "[[": ["wait", "indentPrev"],
+        \ "]]": ["wait", "indentNext"],
+        \ "[{": ["wait", "sourcePrev"],
+        \ "]}": ["wait", "sourceNext"]
+    \})
 
-let g:kitty_navigator_no_mappings = 1
-nnoremap <silent> <C-h> :KittyNavigateLeft<CR>
-nnoremap <silent> <C-j> :KittyNavigateDown<CR>
-nnoremap <silent> <C-k> :KittyNavigateUp<CR>
-nnoremap <silent> <C-l> :KittyNavigateRight<CR>
+    call coc#config("explorer.width", 30)
+    call coc#config("explorer.quitOnOpen", v:true)
+    call coc#config("explorer.icon.enableNerdfont", v:true)
+    call coc#config("explorer.icon.enableDevicons", v:true)
+    call coc#config("explorer.file.showHiddenFiles", v:true)
 
-"#################
-"# fzf
-"#################
+    noremap <silent> <leader>o :CocCommand explorer<CR>
 
-noremap <silent> <leader>; :Buffers<CR>
-noremap <silent> <leader>f :Files<CR>
-noremap <silent> <leader>h :History<CR>
-noremap <silent> <leader>t :Ag<CR>
+    inoremap <silent><expr> <TAB>
+          \ pumvisible() ? coc#_select_confirm() :
+          \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+          \ <SID>check_back_space() ? "\<TAB>" :
+          \ coc#refresh()
+
+    function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+    inoremap <silent><expr> <C-Space> coc#refresh()
+    nmap <leader>qf <Plug>(coc-fix-current)
+
+    "GoTo code navigation
+    nmap <leader>g <C-o>
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gt <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+    nmap <silent> ]e <Plug>(coc-diagnostic-next-error)
+    nmap <silent> [e <Plug>(coc-diagnostic-prev-error)
+    nmap <silent> ]w <Plug>(coc-diagnostic-next)
+    nmap <silent> [w <Plug>(coc-diagnostic-prev)
+
+    nmap <leader>rn <Plug>(coc-rename)
+
+    "Help on K
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+    function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+        else 
+            call CocAction('doHover')
+        endif
+    endfunction
+
+    "au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+
+    "show all diagnostics.
+    nnoremap <silent> <space>d :<C-u>CocList diagnostics<CR>
+    "manage extensions.
+    nnoremap <silent> <space>e :<C-u>CocList extensions<CR>
+
+    command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+    command! -nargs=0 Format :call CocAction('format')
+    nmap <silent> <leader>p :call CocAction('format')<CR>;
+
+    " # Coc-Prettier
+    command! -nargs=0 Prettier :CocCommand prettier.formatFile
+    "nmap <silent> <leader>p :CocCommand prettier.formatFile<CR>
+    vmap <leader>p <Plug>(coc-format-selected)
+
+    "#################
+    "# Kitty Navigator
+    "#################
+
+    let g:kitty_navigator_no_mappings = 1
+    nnoremap <silent> <C-h> :KittyNavigateLeft<CR>
+    nnoremap <silent> <C-j> :KittyNavigateDown<CR>
+    nnoremap <silent> <C-k> :KittyNavigateUp<CR>
+    nnoremap <silent> <C-l> :KittyNavigateRight<CR>
+
+    "#################
+    "# fzf
+    "#################
+
+    noremap <silent> <leader>; :Buffers<CR>
+    noremap <silent> <leader>f :Files<CR>
+    noremap <silent> <leader>h :History<CR>
+    noremap <silent> <leader>t :Ag<CR>
+
+    "#################
+    "# Goyo/Limelight
+    "#################
+
+    let g:limelight_default_coefficient = 0.8
+
+    function! s:goyo_enter()
+        autocmd! numbertoggle
+        set nonumber
+        set norelativenumber
+        set linebreak 
+        set scrolloff=999
+        Limelight
+    endfunction
+
+    function! s:goyo_leave()
+        set nolinebreak
+        set scrolloff=10
+        Limelight!
+    endfunction
+
+    autocmd! User GoyoEnter nested call <SID>goyo_enter()
+    autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+endif
 
 "#################
 "# CamelCaseMotion
@@ -194,7 +223,6 @@ let g:camelcasemotion_key = '<leader>'
 "#################
 "# CloseTag
 "#################
-
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.tsx'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
@@ -218,30 +246,6 @@ let g:VM_default_mappings = 0
 let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"] = '<C-M-j>'
 let g:VM_maps["Add Cursor Up"] = '<C-M-k>'
-
-"#################
-"# Goyo/Limelight
-"#################
-
-let g:limelight_default_coefficient = 0.8
-
-function! s:goyo_enter()
-	autocmd! numbertoggle
-	set nonumber
-	set norelativenumber
-	set linebreak 
-	set scrolloff=999
-	Limelight
-endfunction
-
-function! s:goyo_leave()
-	set nolinebreak
-	set scrolloff=10
-	Limelight!
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 "#######################
 "###  Key Remappings  ##
