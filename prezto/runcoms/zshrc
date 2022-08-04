@@ -16,15 +16,21 @@ fi
 path+=('/usr/local/go/bin')
 path+=('~/.local/bin')
 
-# Use fd for default fzf command
-alias fd=fdfind
-export FZF_DEFAULT_COMMAND='fdfind --type f'
-
 # Custom aliases
 alias vim=nvim
 alias :q=exit
 alias gmmk='xkbcomp ~/gmmk_cust $DISPLAY'
 alias awsd='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
+alias gcm="git commit -m"
+alias gca="git add -A && git commit -m"
+alias gpu="git push -u origin HEAD"
+alias gpf="git push --force-with-lease"
+alias gp="git push"
+alias ga="git add"
+alias gaa="git add -A"
+alias gs="git status"
+alias gsh="git stash -u"
+alias gco="git checkout"
 
 # Set editor to nvim
 export VISUAL=nvim
@@ -45,3 +51,27 @@ export NVM_DIR="$HOME/.nvm"
 
 # nnn - CD on Quit
 [ -f ~/.scripts/nnn/quitcd.zsh ] && source ~/.scripts/nnn/quitcd.zsh
+
+export FZF_DEFAULT_COMMAND='ag --ignore node_modules -g ""' 
+
+###### WORK
+
+alias python="python3"
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/20.1.5948944
+export ANDROID_NDK_ROOT=$ANDROID_SDK_ROOT/ndk/20.1.5948944
+
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+export REACT_DEBUGGER="unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=8081' ||" npm start
+
+###### END WORK
