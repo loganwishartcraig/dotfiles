@@ -1,4 +1,11 @@
-require "core"
-
-require("core.packer").bootstrap()
-require "plugins"
+require "ganlabs.options"
+require "ganlabs.keymaps"
+require "ganlabs.plugins"
+require "ganlabs.colorscheme"
+require "ganlabs.cmp"
+require "ganlabs.lsp"
+require "ganlabs.telescope"
+require "ganlabs.treesitter"
+require "ganlabs.autopairs"
+require "ganlabs.comment"
+require "ganlabs.nvim-tree"
