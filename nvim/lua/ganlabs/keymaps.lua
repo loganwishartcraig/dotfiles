@@ -83,6 +83,7 @@ map("n", "<leader>fg", "<CMD>Telescope git_branches<CR>", opts)
 map("n", "<leader>fr", "<CMD>Telescope lsp_references<CR>", opts)
 map("n", "<leader>fd", "<CMD>Telescope lsp_definitions<CR>", opts)
 map("n", "<leader>fi", "<CMD>Telescope lsp_implementations<CR>", opts)
+map("n", "<leader>fh", "<CMD>Telescope oldfiles<CR>", opts)
 
 -- Comment toggling
 M.commments = {
