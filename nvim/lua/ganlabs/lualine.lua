@@ -8,8 +8,8 @@ lualine.setup({
     theme = "catppuccin",
     component_separators = '|',
     section_separators = { left = '', right = '' },
+    disabled_filetypes = { 'packer', 'NvimTree' },
   },
-  disabled_filetypes = { 'packer', 'NVimTree' },
   sections = {
     lualine_a = {
       { 'mode', separator = { left = '' }, right_padding = 2 },

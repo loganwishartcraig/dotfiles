@@ -45,8 +45,10 @@ map("n", "<F3>", ":noh<CR>", opts)
 -- Quick open adjacent file
 map("n", "<leader>la", ":e <C-R>=expand('%:h').\"/\"<CR>", { noremap = true })
 
--- Quick close buffer
-map("n", "<leader>c", ":bd<CR>", opts)
+-- Buffers
+map("n", "<leader>bc", ":bd<CR>", opts) -- Close buffer
+map("n", "[b", "<cmd>BufferLineCyclePrev<CR>", opts)
+map("n", "]b", "<cmd>BufferLineCycleNext<CR>", opts)
 
 -- Easier mark jumping
 map("n", "'", "`", {})

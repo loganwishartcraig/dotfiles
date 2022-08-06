@@ -46,7 +46,7 @@ return packer.startup(function(use)
 
   -- Colorscheme
   use "sts10/vim-pink-moon"
-  use "catppuccin/nvim"
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"
@@ -87,7 +87,9 @@ return packer.startup(function(use)
   use "numToStr/Comment.nvim"
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use "machakann/vim-sandwich"
-  use "knubie/vim-kitty-navigator"
+  use { "knubie/vim-kitty-navigator",
+    run = 'cp -f ./pass_keys.py ~/.config/kitty/ && cp -f ./neighboring_window.py ~/.config/kitty/' }
+  use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
 
   -- Statusline
   use "nvim-lualine/lualine.nvim"
