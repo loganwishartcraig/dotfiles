@@ -20,6 +20,8 @@ git clone https://github.com/loganwishartcraig/dotfiles.git ${ZDOTDIR:-$HOME}/.d
 # setup symbolic links to dotfiles
 mkdir -p ${ZDOTDIR:-$HOME}/.config/kitty ${ZDOTDIR:-$HOME}/.config/nvim
 ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/kitty/kitty.conf ${ZDOTDIR:-$HOME}/.config/kitty/kitty.conf
+ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/kitty/current-theme.conf ${ZDOTDIR:-$HOME}/.config/kitty/current-theme.conf
+cp -r ${ZDOTDIR:-$HOME}/.dotfiles/kitty/themes ${ZDOTDIR:-$HOME}/.config/kitty
 ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/nvim/init.vim ${ZDOTDIR:-$HOME}/.config/nvim/init.vim
 ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/nvim/coc-settings.json ${ZDOTDIR:-$HOME}/.config/nvim/coc-settings.json
 ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/nvim/spell ${ZDOTDIR:-$HOME}/.config/nvim/spell

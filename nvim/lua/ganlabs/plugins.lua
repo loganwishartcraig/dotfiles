@@ -88,7 +88,7 @@ return packer.startup(function(use)
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use "machakann/vim-sandwich"
   use { "knubie/vim-kitty-navigator",
-    run = 'cp -f ./pass_keys.py ~/.config/kitty/ && cp -f ./neighboring_window.py ~/.config/kitty/' }
+    run = 'yes | cp -f ./*.py ~/.config/kitty/' }
   use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
 
   -- Statusline
