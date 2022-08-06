@@ -57,22 +57,25 @@ map("n", "<leader>zz", "1z=E", opts)
 
 -- LSP
 M.lsp_keymaps = function(bufnr)
-    bf_map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    bf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    bf_map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    bf_map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    bf_map(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-    bf_map(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-    bf_map(bufnr, "n", "[e",
-        '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded", severity = vim.diagnostic.severity.ERROR })<CR>', opts)
-    bf_map(bufnr, "n", "]e",
-        '<cmd>lua vim.diagnostic.goto_next({ border = "rounded", severity = vim.diagnostic.severity.ERROR })<CR>', opts)
-    bf_map(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    bf_map(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    bf_map(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    bf_map(bufnr, "n", "<leader>y", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-    bf_map(bufnr, "n", "gy", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', opts)
-    bf_map(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+  bf_map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+  bf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  bf_map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+
+  --bf_map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  bf_map(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- Let Telescope list references
+
+  bf_map(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
+  bf_map(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
+  bf_map(bufnr, "n", "[e",
+    '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded", severity = vim.diagnostic.severity.ERROR })<CR>', opts)
+  bf_map(bufnr, "n", "]e",
+    '<cmd>lua vim.diagnostic.goto_next({ border = "rounded", severity = vim.diagnostic.severity.ERROR })<CR>', opts)
+  bf_map(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  -- bf_map(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  bf_map(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  bf_map(bufnr, "n", "<leader>y", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+  bf_map(bufnr, "n", "gy", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', opts)
+  bf_map(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
 -- Telescope
@@ -87,10 +90,10 @@ map("n", "<leader>fh", "<CMD>Telescope oldfiles<CR>", opts)
 
 -- Comment toggling
 M.commments = {
-    toggleLine = "gcc",
-    toggleBlock = "gcb",
-    opLeaderLine = "gc",
-    opLeaderBlock = "gb",
+  toggleLine = "gcc",
+  toggleBlock = "gcb",
+  opLeaderLine = "gc",
+  opLeaderBlock = "gb",
 }
 
 -- Nvimtree
@@ -98,6 +101,6 @@ map("n", "<leader>o", "<CMD>NvimTreeFindFileToggle<CR>", opts)
 map("n", "<leader>e", "<CMD>NvimTreeToggle<CR>", opts)
 
 -- Formatting
-map("n", "<leader>p", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
+map("n", "<leader>p", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
 return M

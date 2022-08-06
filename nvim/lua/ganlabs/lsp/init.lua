@@ -17,25 +17,24 @@ local opts = {
     capabilities = handlers.capabilities,
 }
 
+local build_handler = function(name)
+  return function()
+    local l_opts = require("ganlabs.lsp.settings." .. name)
+    lspconfig[name].setup(vim.tbl_deep_extend("force", {}, opts, l_opts))
+  end
+end
+
 handlers.setup()
 mason_lspc.setup()
 mason_lspc.setup_handlers {
     function(server_name)
         lspconfig[server_name].setup {
             on_attach = handlers.on_attach,
-            capabilities = handlers.capabilities
+            capabilities = handlers.capabilities,
         }
     end,
-    ['tsserver'] = function()
-        local l_opts = require("ganlabs.lsp.settings.tsserver")
-        lspconfig['tsserver'].setup(vim.tbl_deep_extend("force", l_opts, opts))
-    end,
-    ['jsonls'] = function()
-        local l_opts = require("ganlabs.lsp.settings.jsonls")
-        lspconfig['jsonls'].setup(vim.tbl_deep_extend("force", l_opts, opts))
-    end,
-    ['sumneko_lua'] = function()
-        local l_opts = require("ganlabs.lsp.settings.sumneko_lua")
-        lspconfig['sumneko_lua'].setup(vim.tbl_deep_extend("force", l_opts, opts))
-    end
+    ['eslint'] = build_handler('eslint'),
+    ['tsserver'] = build_handler('tsserver'),
+    ['jsonls'] = build_handler('jsonls'),
+    ['sumneko_lua'] = build_handler('sumneko_lua'),
 }

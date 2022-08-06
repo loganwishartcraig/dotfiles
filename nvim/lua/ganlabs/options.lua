@@ -22,8 +22,8 @@ local options = {
     updatetime = 300,
     writebackup = false,
     expandtab = true,
-    tabstop = 4,
-    shiftwidth = 4,
+    tabstop = 2,
+    shiftwidth = 2,
     cursorline = true,
     number = true,
     relativenumber = false,
@@ -34,7 +34,9 @@ local options = {
     sidescrolloff = 10,
     guifont = "monospace:h17",
     title = true,
-    titlestring = "%t - nvim"
+    titlestring = "%t - nvim",
+    spell = true,
+    spelllang = "en",
 }
 
 vim.opt.shortmess:append "c"
