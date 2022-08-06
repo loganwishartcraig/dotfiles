@@ -89,6 +89,9 @@ return packer.startup(function(use)
   use "machakann/vim-sandwich"
   use "knubie/vim-kitty-navigator"
 
+  -- Statusline
+  use "nvim-lualine/lualine.nvim"
+
   -- Git
   use 'lewis6991/gitsigns.nvim'
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
