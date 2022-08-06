@@ -46,6 +46,7 @@ return packer.startup(function(use)
 
   -- Colorscheme
   use "sts10/vim-pink-moon"
+  use "catppuccin/nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"
