@@ -1,8 +1,10 @@
 local M = {}
 local opts = { noremap = true, silent = true }
 
-local map = vim.api.nvim_set_keymap
-local bf_map = vim.api.nvim_buf_set_keymap
+local map = vim.keymap.set
+local bf_map = function(bufnr, mode, l, r, o)
+  map(mode, l, r, vim.tbl_deep_extend("force", { buffer = bufnr }, o or {}))
+end
 
 -- Leader as space
 map("", "<Space>", "<Nop>", opts)
@@ -43,8 +45,10 @@ map("n", "<F3>", ":noh<CR>", opts)
 -- Quick open adjacent file
 map("n", "<leader>la", ":e <C-R>=expand('%:h').\"/\"<CR>", { noremap = true })
 
--- Quick close buffer
-map("n", "<leader>c", ":bd<CR>", opts)
+-- Buffers
+map("n", "<leader>bc", ":bd<CR>", opts) -- Close buffer
+map("n", "[b", "<cmd>BufferLineCyclePrev<CR>", opts)
+map("n", "]b", "<cmd>BufferLineCycleNext<CR>", opts)
 
 -- Easier mark jumping
 map("n", "'", "`", {})
@@ -102,5 +106,53 @@ map("n", "<leader>e", "<CMD>NvimTreeToggle<CR>", opts)
 
 -- Formatting
 map("n", "<leader>p", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+-- Git stuff
+map("n", "<leader>dv", "<cmd>DiffviewOpen<CR>", opts)
+map("n", "<leader>dh", "<cmd>DiffviewFileHistory<CR>", opts)
+map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", opts)
+
+M.gitsigns = function(gs, bufnr)
+
+  --[[ bf_map(bufnr, 'n', ']h', function()
+    if vim.wo.diff then return ']h' end
+    vim.schedule(function() gs.next_hunk() end)
+    return '<Ignore>'
+  end, { expr = true, noremap = true, silent = true })
+
+  bf_map(bufnr, 'n', '[h', function()
+    if vim.wo.diff then return '[h' end
+    vim.schedule(function() gs.prev_hunk() end)
+    return '<Ignore>'
+  end, { expr = true, noremap = true, silent = true })
+ ]]
+
+  -- Navigation
+  bf_map(bufnr, 'n', ']h', gs.next_hunk, opts);
+  bf_map(bufnr, 'n', '[h', gs.prev_hunk, opts);
+
+  -- Actions
+  bf_map(bufnr, { 'n', 'v' }, '<leader>hs', gs.stage_hunk, opts)
+  bf_map(bufnr, { 'n', 'v' }, '<leader>hr', gs.reset_hunk, opts)
+
+  bf_map(bufnr, 'n', '<leader>hS', gs.stage_buffer, opts)
+  bf_map(bufnr, 'n', '<leader>hu', gs.undo_stage_hunk, opts)
+  bf_map(bufnr, 'n', '<leader>hR', gs.reset_buffer, opts)
+  bf_map(bufnr, 'n', '<leader>hp', gs.preview_hunk, opts)
+  bf_map(bufnr, 'n', '<leader>hb', function() gs.blame_line { full = true } end, opts)
+
+  bf_map(bufnr, 'n', '<leader>tb', gs.toggle_current_line_blame, opts)
+  bf_map(bufnr, 'n', '<leader>td', gs.toggle_deleted, opts)
+
+  -- Text object
+  bf_map(bufnr, { 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', opts)
+end
+
+map('n', '<leader>co', '<Plug>(git-conflict-ours)', opts)
+map('n', '<leader>ct', '<Plug>(git-conflict-theirs)', opts)
+map('n', '<leader>cb', '<Plug>(git-conflict-both)', opts)
+map('n', '<leader>c0', '<Plug>(git-conflict-none)', opts)
+map('n', ']x', '<Plug>(git-conflict-prev-conflict)', opts)
+map('n', '[x', '<Plug>(git-conflict-next-conflict)', opts)
 
 return M

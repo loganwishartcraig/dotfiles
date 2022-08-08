@@ -1,46 +1,46 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
-    return
+  return
 end
 
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
-    return
+  return
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
-    local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+  local col = vim.fn.col "." - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
 local kind_icons = {
-  Text = "",
-  Method = "m",
+  Text = "",
+  Method = "",
   Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "ﴯ",
   Interface = "",
   Module = "",
-  Property = "",
+  Property = "ﰠ",
   Unit = "",
   Value = "",
   Enum = "",
   Keyword = "",
-  Snippet = "",
+  Snippet = "",
   Color = "",
   File = "",
   Reference = "",
   Folder = "",
   EnumMember = "",
-  Constant = "",
+  Constant = "",
   Struct = "",
   Event = "",
   Operator = "",
-  TypeParameter = "",
+  TypeParameter = ""
 }
 
 cmp.setup {
@@ -62,8 +62,8 @@ cmp.setup {
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping {
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
     },
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
@@ -137,7 +137,7 @@ cmp.setup.cmdline('/', {
   }
 })
 
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
