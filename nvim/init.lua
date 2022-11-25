@@ -12,3 +12,5 @@ require "ganlabs.nvim-tree"
 require "ganlabs.git"
 require "ganlabs.lualine"
 require "ganlabs.bufferline"
+-- Must be called after lsp/cmp are setup
+-- require("ganlabs.nvim-ufo").setup()

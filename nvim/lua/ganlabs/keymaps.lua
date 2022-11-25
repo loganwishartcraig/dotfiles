@@ -46,7 +46,8 @@ map("n", "<F3>", ":noh<CR>", opts)
 map("n", "<leader>la", ":e <C-R>=expand('%:h').\"/\"<CR>", { noremap = true })
 
 -- Buffers
-map("n", "<leader>bc", ":bd<CR>", opts) -- Close buffer
+map("n", "<leader>bc", "<cmd>bd<CR>", opts) -- Close buffer
+map("n", "<leader>bk", "<cmd>%bd|e#|bd#<CR>", opts);
 map("n", "[b", "<cmd>BufferLineCyclePrev<CR>", opts)
 map("n", "]b", "<cmd>BufferLineCycleNext<CR>", opts)
 
@@ -64,6 +65,7 @@ M.lsp_keymaps = function(bufnr)
   bf_map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   bf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
   bf_map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  bf_map(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 
   --bf_map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   bf_map(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- Let Telescope list references
@@ -86,7 +88,8 @@ end
 map("n", "<leader>ff", "<CMD>Telescope find_files<CR>", opts)
 map("n", "<leader>ft", "<CMD>Telescope live_grep<CR>", opts)
 map("n", "<leader>f;", "<CMD>Telescope buffers<CR>", opts)
-map("n", "<leader>fg", "<CMD>Telescope git_branches<CR>", opts)
+map("n", "<leader>fg", "<CMD>Telescope git_status<CR>", opts)
+map("n", "<leader>fb", "<CMD>Telescope git_branches<CR>", opts)
 map("n", "<leader>fr", "<CMD>Telescope lsp_references<CR>", opts)
 map("n", "<leader>fd", "<CMD>Telescope lsp_definitions<CR>", opts)
 map("n", "<leader>fi", "<CMD>Telescope lsp_implementations<CR>", opts)
@@ -105,12 +108,19 @@ map("n", "<leader>o", "<CMD>NvimTreeFindFileToggle<CR>", opts)
 map("n", "<leader>e", "<CMD>NvimTreeToggle<CR>", opts)
 
 -- Formatting
-map("n", "<leader>p", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+map("n", "<leader>p", "<cmd>lua vim.lsp.buf.format({timeout_ms = 5000, async = true})<CR>", opts)
 
 -- Git stuff
 map("n", "<leader>dv", "<cmd>DiffviewOpen<CR>", opts)
 map("n", "<leader>dh", "<cmd>DiffviewFileHistory<CR>", opts)
 map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", opts)
+map("n", "<leader>dr", "<cmd>DiffviewRefresh<CR>", opts)
+map("n", "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<CR>", opts)
+
+M.diffview_actions = {
+  gotoFile = '<leader>do',
+  toggleStageEntry = '<leader>ds',
+}
 
 M.gitsigns = function(gs, bufnr)
 
@@ -154,5 +164,9 @@ map('n', '<leader>cb', '<Plug>(git-conflict-both)', opts)
 map('n', '<leader>c0', '<Plug>(git-conflict-none)', opts)
 map('n', ']x', '<Plug>(git-conflict-prev-conflict)', opts)
 map('n', '[x', '<Plug>(git-conflict-next-conflict)', opts)
+
+-- UFO
+-- map('n', 'zR', require('ufo').openAllFolds, opts)
+-- map('n', 'zM', require('ufo').closeAllFolds, opts)
 
 return M

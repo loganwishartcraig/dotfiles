@@ -103,12 +103,9 @@ allow_remote_control yes
 # Disable audio bell
 enable_audio_bell no
 
-# Disable confirm window close
-confirm_os_window_close 0
-
 font_size 13
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# Catppuccin-Frappe
 include current-theme.conf
 # END_KITTY_THEME
