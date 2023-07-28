@@ -36,5 +36,5 @@ mason_lspc.setup_handlers {
   ['eslint'] = build_handler('eslint'),
   ['tsserver'] = build_handler('tsserver'),
   ['jsonls'] = build_handler('jsonls'),
-  ['sumneko_lua'] = build_handler('sumneko_lua'),
+  ['lua_ls'] = build_handler('lua_ls'),
 }
