@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# install kitty.term
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
+# install tools
+sudo apt install -y git neovim python3-neovim zsh curl fd-find unzip silversearcher-ag
+
+# install vim plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+       
+# install prezto 
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+# clone config repo
+mkdir -p ${ZDOTDIR:-$HOME}/.dotfiles
+git clone https://github.com/loganwishartcraig/dotfiles.git ${ZDOTDIR:-$HOME}/.dotfiles
+
+# setup symbolic links to dotfiles
+mkdir -p ${ZDOTDIR:-$HOME}/.config/kitty ${ZDOTDIR:-$HOME}/.config/nvim
+ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/kitty/kitty.conf ${ZDOTDIR:-$HOME}/.config/kitty/kitty.conf
+ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/kitty/current-theme.conf ${ZDOTDIR:-$HOME}/.config/kitty/current-theme.conf
+cp -r ${ZDOTDIR:-$HOME}/.dotfiles/kitty/themes ${ZDOTDIR:-$HOME}/.config/kitty
+ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/nvim/init.vim ${ZDOTDIR:-$HOME}/.config/nvim/init.vim
+ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/nvim/coc-settings.json ${ZDOTDIR:-$HOME}/.config/nvim/coc-settings.json
+ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/nvim/spell ${ZDOTDIR:-$HOME}/.config/nvim/spell
+ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/prezto/runcoms/zpreztorc ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zpreztorc
+ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/prezto/runcoms/zshrc ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc
+ln -s -f ${ZDOTDIR:-$HOME}/.dotfiles/prezto/modules/prompt/functions/prompt_paradox_setup ${ZDOTDIR:-$HOME}/.zprezto/modules/prompt/functions/prompt_paradox_setup
+ln -s -f ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc ${ZDOTDIR:-$HOME}/.zshrc
+
+# Install fira-code font
+wget -P /tmp https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+mkdir -p ${ZDOTDIR:-$HOME}/.local/share/fonts
+unzip /tmp/FiraCode.zip -d ${ZDOTDIR:-$HOME}/.local/share/fonts
+fc-cache -f -v
+
+# Install vim kitty navigator
+mkdir -p /tmp/vim-kitty-navigator
+git clone https://github.com/knubie/vim-kitty-navigator.git /tmp/vim-kitty-navigator
+cp /tmp/vim-kitty-navigator/*.py ${ZDOTDIR:-$HOME}/.config/kitty
+
+# switch shell to zsh
+chsh -s $(which zsh)
+
+/usr/bin/zsh << 'EOF'
+
+# Finish Prezto install
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+ln -s -f ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zpreztorc ${ZDOTDIR:-$HOME}/.zpreztorc
+ln -s -f ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc ${ZDOTDIR:-$HOME}/.zshrc
+
+# install nvm
+mkdir -p ${ZDOTDIR:-$HOME}/.nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | zsh
+
+source ${ZDOTDIR:-$HOME}/.zshrc
+
+# Load nvm for current shell
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# finish node install
+nvm install node
+
+# Kitty term desktop integration
+sudo ln -s ${ZDOTDIR:-$HOME}/.local/kitty.app/bin/kitty /usr/local/bin/
+mkdir -p ${ZDOTDIR:-$HOME}/.local/share/applications
+cp ${ZDOTDIR:-$HOME}/.local/kitty.app/share/applications/kitty.desktop ${ZDOTDIR:-$HOME}/.local/share/applications/
+sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ${ZDOTDIR:-$HOME}/.local/share/applications/kitty.desktop
+
+# Setup VimPlug and CoC
+nvim -c ":PlugInstall"
+EOF
