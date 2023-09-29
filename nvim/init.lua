@@ -10,5 +10,8 @@ require "ganlabs.autopairs"
 require "ganlabs.comment"
 require "ganlabs.nvim-tree"
 require "ganlabs.git"
+require "ganlabs.octo"
 require "ganlabs.lualine"
 require "ganlabs.bufferline"
+-- Must be called after lsp/cmp are setup
+-- require("ganlabs.nvim-ufo").setup()

@@ -1,3 +1,4 @@
+local systemTheme = vim.fn.system("getSystemTheme")
 local colorscheme = "catppuccin"
 
 -- Catppuccin setup
@@ -7,7 +8,15 @@ if not theme_ok then
   return
 end
 
-vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+local flavor
+
+if string.match(systemTheme, "Dark") then
+  flavor = "mocha"
+else
+  flavor = "latte"
+end
+
+vim.g.catppuccin_flavour = flavor -- latte, frappe, macchiato, mocha
 catppuccin.setup({
   integration = {
     nvimtree = {

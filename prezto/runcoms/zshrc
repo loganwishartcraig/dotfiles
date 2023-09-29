@@ -12,23 +12,32 @@ fi
 
 # Customize to your needs...
 
-# Add go to path
-path+=('/usr/local/go/bin')
-path+=('~/.local/bin')
-
-# Use fd for default fzf command
-alias fd=fdfind
-export FZF_DEFAULT_COMMAND='fdfind --type f'
-
 # Custom aliases
 alias vim=nvim
 alias :q=exit
 alias gmmk='xkbcomp ~/gmmk_cust $DISPLAY'
 alias awsd='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
+alias gcm="git commit -m"
+alias gca="git add -A && git commit -m"
+alias gpu="git push -u origin HEAD"
+alias gpf="git push --force-with-lease"
+alias gp="git push"
+alias ga="git add"
+alias gaa="git add -A"
+alias gs="git status"
+alias gsh="git stash -u"
+alias gco="git checkout"
 
 # Set editor to nvim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+# Set terminal theme based on system theme
+if [[ ( $(getSystemTheme) == *'Dark'* ) ]]; then
+  kitty @ kitten themes --reload-in=parent Catppuccin-Mocha
+else
+  kitty @ kitten themes --reload-in=parent Catppuccin-Latte
+fi
 
 # Custom functions
 mkcd () {
@@ -36,12 +45,6 @@ mkcd () {
 		cd -P -- "$1"
 }
 
-# Source nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# nnn - CD on Quit
-[ -f ~/.scripts/nnn/quitcd.zsh ] && source ~/.scripts/nnn/quitcd.zsh
+export FZF_DEFAULT_COMMAND='ag --ignore node_modules -g ""' 

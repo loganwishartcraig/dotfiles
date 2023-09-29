@@ -67,6 +67,11 @@ return packer.startup(function(use)
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
+  use {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = "nvim-treesitter",
+    requires = "nvim-treesitter/nvim-treesitter",
+  }
 
   -- Treesitter
   use {
@@ -90,6 +95,8 @@ return packer.startup(function(use)
   use { "knubie/vim-kitty-navigator",
     run = 'yes | cp -f ./*.py ~/.config/kitty/' }
   use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
+  -- Disabled because buggy af
+  -- use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
   -- Statusline
   use "nvim-lualine/lualine.nvim"
@@ -97,7 +104,15 @@ return packer.startup(function(use)
   -- Git
   use 'lewis6991/gitsigns.nvim'
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-  use { 'akinsho/git-conflict.nvim' }
+  use 'akinsho/git-conflict.nvim'
+  use { -- Could (should) be lazy loaded
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+  }
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()
