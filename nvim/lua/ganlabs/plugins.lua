@@ -105,6 +105,14 @@ return packer.startup(function(use)
   use 'lewis6991/gitsigns.nvim'
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
   use 'akinsho/git-conflict.nvim'
+  use { -- Could (should) be lazy loaded
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+  }
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()
