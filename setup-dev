@@ -3,7 +3,7 @@
 sudo apt update
 
 # install neovim aux tools
-sudo apt install -y fd-find silversearcher-ag
+sudo apt install -y ripgrep fd-find silversearcher-ag
 
 # install packer.nvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
