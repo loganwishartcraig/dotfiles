@@ -67,9 +67,23 @@ local function lsp_keymaps(bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({async = true})' ]]
 end
 
+local function lsp_format_on_save(client, bufnr)
+  if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+              vim.lsp.buf.format({ async = false })
+          end,
+      })
+  end
+end
+
 M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
+  lsp_format_on_save(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
