@@ -16,15 +16,19 @@ ln -s -f ${PWD}/nvim/init.lua ${ZDOTDIR:-$HOME}/.config/nvim/init.lua
 ln -s -f ${PWD}/nvim/lua ${ZDOTDIR:-$HOME}/.config/nvim/lua
 ln -s -f ${PWD}/nvim/spell ${ZDOTDIR:-$HOME}/.config/nvim/spell
 
-# install neovim from source
+# install neovim from brew or source
 if ! command -v nvim &> /dev/null
 then
-  sudo apt install -y gcc make cmake
-  mkdir -p /tmp/nvim_src
-  git clone https://github.com/neovim/neovim.git /tmp/nvim_src
-  cd /tmp/nvim_src
-  make CMAKE_BUILD_TYPE=Release
-  sudo make install
-  cd ~
-  rm -rf /tmp/nvim_src
+  if command -v brew &> /dev/null
+    brew install neovim
+  else
+    sudo apt install -y gcc make cmake
+    mkdir -p /tmp/nvim_src
+    git clone https://github.com/neovim/neovim.git /tmp/nvim_src
+    cd /tmp/nvim_src
+    make CMAKE_BUILD_TYPE=Release
+    sudo make install
+    cd ~
+    rm -rf /tmp/nvim_src
+  fi
 fi
