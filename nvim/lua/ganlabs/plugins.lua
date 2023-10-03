@@ -94,7 +94,7 @@ return packer.startup(function(use)
   use "machakann/vim-sandwich"
   use { "knubie/vim-kitty-navigator",
     run = 'yes | cp -f ./*.py ~/.config/kitty/' }
-  use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
+  use { 'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons' }
   -- Disabled because buggy af
   -- use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
