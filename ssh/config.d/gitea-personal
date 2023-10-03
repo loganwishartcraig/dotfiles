@@ -1,0 +1,9 @@
+# Personal GitTea account
+Host cyder.ganlabs.dev
+ HostName cyder.ganlabs.dev
+ AddKeysToAgent yes
+ User git
+ # IdentityFile ~/.ssh/id_ed25519_gitea-ganlabs
+ IdentitiesOnly yes
+ Port 2222
+
