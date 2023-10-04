@@ -39,6 +39,8 @@ local options = {
   spelllang = "en",
   -- Ensures folds are always open
   foldlevel = 300,
+  foldmethod = "expr",
+  foldexpr = "nvim_treesitter#foldexpr()"
 }
 
 vim.opt.shortmess:append "c"

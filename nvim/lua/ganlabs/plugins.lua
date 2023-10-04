@@ -38,7 +38,6 @@ packer.init {
 }
 
 return packer.startup(function(use)
-
   -- Core
   use "wbthomason/packer.nvim"
   use "nvim-lua/popup.nvim"
@@ -86,6 +85,9 @@ return packer.startup(function(use)
   -- Motions
   use "bkad/CamelCaseMotion"
 
+  -- Visual Aids
+  use "jinh0/eyeliner.nvim"
+
   -- Editor
   use "windwp/nvim-autopairs"
   use "windwp/nvim-ts-autotag"
@@ -95,8 +97,6 @@ return packer.startup(function(use)
   use { "knubie/vim-kitty-navigator",
     run = 'yes | cp -f ./*.py ~/.config/kitty/' }
   use { 'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons' }
-  -- Disabled because buggy af
-  -- use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
   -- Statusline
   use "nvim-lualine/lualine.nvim"

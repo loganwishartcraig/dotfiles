@@ -13,5 +13,4 @@ require "ganlabs.git"
 require "ganlabs.octo"
 require "ganlabs.lualine"
 require "ganlabs.bufferline"
--- Must be called after lsp/cmp are setup
--- require("ganlabs.nvim-ufo").setup()
+require "ganlabs.eyeliner"
