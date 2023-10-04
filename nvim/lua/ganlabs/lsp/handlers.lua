@@ -1,5 +1,4 @@
 local keymaps = require("ganlabs.keymaps")
-local ufo = require("ganlabs.nvim-ufo");
 
 local M = {}
 
@@ -93,6 +92,5 @@ if not status_ok then
 end
 
 M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
--- ufo.register_capabilities(M.capabilities);
 
 return M
