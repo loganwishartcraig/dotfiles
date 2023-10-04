@@ -24,6 +24,16 @@ then
     brew install neovim
   fi
   else
+    fi
+
+# Function to install neovim using brew
+install_with_brew() {
+    echo "Installing Neovim with brew..."
+    brew install neovim
+}
+
+# Function to install neovim using apt-get
+install_from_src() {
     sudo apt install -y gcc make cmake
     mkdir -p /tmp/nvim_src
     git clone https://github.com/neovim/neovim.git /tmp/nvim_src
@@ -32,4 +42,13 @@ then
     sudo make install
     cd ~
     rm -rf /tmp/nvim_src
+}
+
+# Ensure nvim is installed
+if ! command -v nvim &> /dev/null; then
+    if command -v brew &> /dev/null; then
+        install_with_brew
+    else
+        install_from_src
+    fi
 fi
