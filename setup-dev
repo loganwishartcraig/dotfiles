@@ -4,10 +4,6 @@ sudo apt update
 
 # install neovim aux tools
 sudo apt install -y ripgrep fd-find silversearcher-ag
-
-# install packer.nvim
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
        
 # setup symbolic links to dotfiles
 mkdir -p ${ZDOTDIR:-$HOME}/.config/nvim
