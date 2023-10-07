@@ -7,6 +7,7 @@ zenmode.setup({
   window = {
     options = {
       wrap = true,
+      linebreak = true,
     },
   }
 })
