@@ -28,6 +28,10 @@ alias gs="git status"
 alias gsh="git stash -u"
 alias gco="git checkout"
 
+if [[ -n "$KITTY_WINDOW_ID" ]]; then
+    alias s="kitty +kitten ssh"
+fi
+
 # Set editor to nvim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
