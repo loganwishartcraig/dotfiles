@@ -12,16 +12,6 @@ ln -s -f ${PWD}/nvim/init.lua ${ZDOTDIR:-$HOME}/.config/nvim/init.lua
 ln -s -f ${PWD}/nvim/lua ${ZDOTDIR:-$HOME}/.config/nvim/lua
 ln -s -f ${PWD}/nvim/spell ${ZDOTDIR:-$HOME}/.config/nvim/spell
 
-# install neovim from brew or source
-if ! command -v nvim &> /dev/null
-then
-  if command -v brew &> /dev/null
-  then
-    brew install neovim
-  fi
-  else
-    fi
-
 # Function to install neovim using brew
 install_with_brew() {
     echo "Installing Neovim with brew..."
