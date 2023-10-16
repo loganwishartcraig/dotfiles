@@ -63,4 +63,5 @@ vim.cmd "set whichwrap+=<,>,[,],h,l"
 
 -- Plugin options
 vim.g.kitty_navigator_no_mappings = 1
+vim.g.kitty_navigator_password = 'cavity-guiding-stereo-volley'
 vim.g.camelcasemotion_key = '<leader>'
