@@ -93,7 +93,7 @@ return packer.startup(function(use)
   use "numToStr/Comment.nvim"
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use "machakann/vim-sandwich"
-  use { "knubie/vim-kitty-navigator",
+  use { "loganwishartcraig/vim-kitty-navigator",
     run = 'yes | cp -f ./*.py ~/.config/kitty/' }
   use { 'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons' }
 
