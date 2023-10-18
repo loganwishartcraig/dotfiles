@@ -1,7 +1,7 @@
 # Font Conf
 
 font_family			Maple Mono SC NF Regular
-bold_font			Maple Mono SF NF Bold
+bold_font			Maple Mono SC NF Bold
 italic_font			Maple Mono SC NF Italic
 bold_italic_font	Maple Mono SC NF Bold Italic
 disable_ligatures	cursor

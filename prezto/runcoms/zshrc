@@ -38,9 +38,9 @@ export EDITOR="$VISUAL"
 
 # Set terminal theme based on system theme
 if [[ ( $(getSystemTheme) == *'Dark'* ) ]]; then
-  kitty @ kitten themes --reload-in=parent Catppuccin-Mocha
+  kitty @ --password="cavity-guiding-stereo-volley" kitten themes --reload-in=parent Catppuccin-Mocha
 else
-  kitty @ kitten themes --reload-in=parent Catppuccin-Latte
+  kitty @ --password="cavity-guiding-stereo-volley" kitten themes --reload-in=parent Catppuccin-Latte
 fi
 
 # Custom functions
