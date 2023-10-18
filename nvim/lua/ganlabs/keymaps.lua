@@ -123,7 +123,6 @@ M.diffview_actions = {
 }
 
 M.gitsigns = function(gs, bufnr)
-
   --[[ bf_map(bufnr, 'n', ']h', function()
     if vim.wo.diff then return ']h' end
     vim.schedule(function() gs.next_hunk() end)
@@ -169,7 +168,7 @@ map('n', '[x', '<Plug>(git-conflict-next-conflict)', opts)
 -- map('n', 'zR', require('ufo').openAllFolds, opts)
 -- map('n', 'zM', require('ufo').closeAllFolds, opts)
 
--- Treesitter text object 
+-- Treesitter text object
 M.treesitter_textobjects = {
   select = {
     -- You can use the capture groups defined in textobjects.scm
@@ -189,16 +188,17 @@ M.treesitter_textobjects = {
     ["ia"] = { query = "@parameter.inner", desc = "Select inner part of a function parameter" },
   },
   swap = {
-      swap_next = {
-        ["<leader>a"] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["<leader>A"] = "@parameter.inner",
-      },
+    swap_next = {
+      ["<leader>a"] = "@parameter.inner",
+    },
+    swap_previous = {
+      ["<leader>A"] = "@parameter.inner",
+    },
   },
-  move =  {
+  move = {
     goto_next_start = {
       ["]f"] = "@function.outer",
+      ["]a"] = "@parameter.outer",
       ["]]"] = { query = "@class.outer", desc = "Next class start" },
       --
       -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
@@ -216,6 +216,7 @@ M.treesitter_textobjects = {
     },
     goto_previous_start = {
       ["[f"] = "@function.outer",
+      ["[a"] = "@parameter.outer",
       ["[["] = "@class.outer",
     },
     goto_previous_end = {
