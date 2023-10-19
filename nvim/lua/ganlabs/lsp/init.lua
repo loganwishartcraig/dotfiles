@@ -9,7 +9,8 @@ if not mason_lspc_ok then
 end
 
 require("ganlabs.lsp.lsp-installer")
-require("ganlabs.lsp.null-ls")
+require("ganlabs.lsp.conform")
+require("ganlabs.lsp.nvim-lint")
 
 local handlers = require("ganlabs.lsp.handlers")
 local opts = {

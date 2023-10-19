@@ -61,7 +61,8 @@ return packer.startup(function(use)
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
   use "neovim/nvim-lspconfig"
-  use "jose-elias-alvarez/null-ls.nvim"
+  use "stevearc/conform.nvim"
+  use "mfussenegger/nvim-lint"
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
