@@ -1,18 +1,13 @@
-local js_formatters = { "eslint_d" }
-
-require("lint").setup({
-  linters_by_ft = {
+require("lint").linters_by_ft = {
     jsonlint = { "jsonlint" },
-    -- go = { "golangcilint" },
-    javascript = js_formatters,
-    typescript = js_formatters,
-    typescriptreact = js_formatters,
-    javascriptreact = js_formatters,
-  }
-})
+    javascript = { "eslint_d" },
+    typescript = { "eslint_d" },
+    typescriptreact = { "eslint_d" },
+    javascriptreact = { "eslint_d" },
+}
 
--- Lint on save
-vim.api.nvim_create_autocmd("BufWritePre", {
+-- Lint on enter, save, insert leave
+vim.api.nvim_create_autocmd({"BufEnter", "BufWritePre", "InsertLeave"}, {
   pattern = "*",
   callback = function()
     require("lint").try_lint()
