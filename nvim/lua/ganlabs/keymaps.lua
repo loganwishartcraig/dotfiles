@@ -164,10 +164,6 @@ map('n', '<leader>c0', '<Plug>(git-conflict-none)', opts)
 map('n', ']x', '<Plug>(git-conflict-prev-conflict)', opts)
 map('n', '[x', '<Plug>(git-conflict-next-conflict)', opts)
 
--- UFO
--- map('n', 'zR', require('ufo').openAllFolds, opts)
--- map('n', 'zM', require('ufo').closeAllFolds, opts)
-
 -- Treesitter text object
 M.treesitter_textobjects = {
   select = {
@@ -186,6 +182,12 @@ M.treesitter_textobjects = {
 
     ["aa"] = { query = "@parameter.outer", desc = "Select outer part of a function parameter" },
     ["ia"] = { query = "@parameter.inner", desc = "Select inner part of a function parameter" },
+
+    ["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
+    ["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
+
+    ["ai"] = { query = "@loop.outer", desc = "Select outer part of a conditional" },
+    ["ii"] = { query = "@loop.inner", desc = "Select inner part of a conditional" },
   },
   swap = {
     swap_next = {
@@ -202,7 +204,7 @@ M.treesitter_textobjects = {
       ["]]"] = { query = "@class.outer", desc = "Next class start" },
       --
       -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
-      ["]o"] = "@loop.*",
+      -- ["]o"] = "@loop.*",
       -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
       --
       -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
