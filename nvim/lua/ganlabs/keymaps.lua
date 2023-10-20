@@ -207,6 +207,7 @@ M.treesitter_textobjects = {
     goto_next_start = {
       ["]f"] = "@function.outer",
       ["]a"] = "@parameter.outer",
+      ["]v"] = "@assignment.outer",
       ["]]"] = { query = "@class.outer", desc = "Next class start" },
       --
       -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
@@ -226,6 +227,7 @@ M.treesitter_textobjects = {
       ["[f"] = "@function.outer",
       ["[a"] = "@parameter.outer",
       ["[["] = "@class.outer",
+      ["[v"] = "@assignment.outer",
     },
     goto_previous_end = {
       ["[F"] = "@function.outer",
