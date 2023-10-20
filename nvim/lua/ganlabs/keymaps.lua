@@ -186,8 +186,14 @@ M.treesitter_textobjects = {
     ["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
     ["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
 
-    ["ai"] = { query = "@loop.outer", desc = "Select outer part of a conditional" },
-    ["ii"] = { query = "@loop.inner", desc = "Select inner part of a conditional" },
+    ["ai"] = { query = "@conditional.outer", desc = "Select outer part of a conditional" },
+    ["ii"] = { query = "@conditional.inner", desc = "Select inner part of a conditional" },
+
+    ["av"] = { query = "@assignment.outer", desc = "Select outer part of an assignment" },
+    ["iv"] = { query = "@assignment.inner", desc = "Select inner part of an assignment" },
+
+    ["va"] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
+    ["vv"] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
   },
   swap = {
     swap_next = {
