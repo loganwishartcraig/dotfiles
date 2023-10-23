@@ -10,6 +10,10 @@ telescope.setup {
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
+    layout_config = {
+      layout_strategy = 'horizontal',
+      horizontal = { height = 0.5 }
+    }
   },
 }
 
