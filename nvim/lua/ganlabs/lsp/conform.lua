@@ -1,4 +1,4 @@
-local js_formatters = { { "eslint_d", "prettierd", "prettier" } }
+local js_formatters = { "eslint_d", { "prettierd", "prettier" } }
 
 require("conform").setup({
   format_on_save = {
