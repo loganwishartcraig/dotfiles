@@ -37,6 +37,7 @@ local options = {
   titlestring = "%t - nvim",
   spell = true,
   spelllang = "en",
+  spelloptions = "camel,noplainbuffer",
   -- Ensures folds are always open
   foldlevel = 300,
   foldmethod = "expr",

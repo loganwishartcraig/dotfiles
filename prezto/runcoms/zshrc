@@ -52,3 +52,10 @@ mkcd () {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_DEFAULT_COMMAND='ag --ignore node_modules -g ""' 
+
+. $HOME/.nix-profile/etc/profile.d/nix.sh
+
+#### WORK
+if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.work" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zshrc.work"
+fi

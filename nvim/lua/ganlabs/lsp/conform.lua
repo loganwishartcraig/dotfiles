@@ -1,10 +1,16 @@
 local js_formatters = { "eslint_d", { "prettierd", "prettier" } }
 
 require("conform").setup({
-  format_on_save = {
-    timeout_ms = 500,
-    lsp_fallback = true
-  },
+  -- format_on_save = {
+  --   timeout_ms = 500,
+  --   lsp_fallback = true
+  -- },
+  -- -- Doesn't work
+  -- formatters = {
+  --   ts_organize_imports = {
+  --     command = ":OrganizeImports"
+  --   }
+  -- },
   formatters_by_ft = {
     lua = { "stylua" },
     go = { "goimports", "golines", "gofmt" },
@@ -16,6 +22,15 @@ require("conform").setup({
     typescriptreact = js_formatters,
     javascriptreact = js_formatters,
   }
+})
+
+-- Auto-save formatting
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    -- if vim.fn.exists(':OrganizeImports') > 0 then vim.cmd('OrganizeImports') end
+    require("conform").format({ bufnr = args.buf, timeout_ms = 500, lsp_fallback = true })
+  end,
 })
 
 -- Format command

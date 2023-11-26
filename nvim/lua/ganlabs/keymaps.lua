@@ -22,6 +22,7 @@ map("n", "<C-Up>", ":resize +5<CR>", opts)
 map("n", "<C-Down>", ":resize -5<CR>", opts)
 map("n", "<C-Left>", ":vertical resize -5<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +5<CR>", opts)
+map("n", "<leader>=", "<C-w>=", opts)
 
 -- Buffer navigation
 map("n", "<S-l>", ":bnext<CR>", opts)
@@ -59,6 +60,9 @@ map("x", "sp", "\"_dP", opts)
 
 -- Spelling correction
 map("n", "<leader>zz", "1z=E", opts)
+
+-- Block sorting
+map("n", "<leader>m", "vi{:sort<CR>", opts)
 
 -- LSP
 M.lsp_keymaps = function(bufnr)
@@ -114,7 +118,7 @@ map("n", "<leader>p", "<cmd>lua vim.lsp.buf.format({timeout_ms = 5000, async = t
 
 -- Git stuff
 map("n", "<leader>dv", "<cmd>DiffviewOpen<CR>", opts)
-map("n", "<leader>dh", "<cmd>DiffviewFileHistory<CR>", opts)
+map("n", "<leader>dh", "<cmd>DiffviewFileHistory %<CR>", opts)
 map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", opts)
 map("n", "<leader>dr", "<cmd>DiffviewRefresh<CR>", opts)
 map("n", "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<CR>", opts)
