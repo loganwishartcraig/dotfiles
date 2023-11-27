@@ -118,6 +118,12 @@ return packer.startup(function(use)
       'nvim-tree/nvim-web-devicons',
     },
   }
+  use {
+    "NeogitOrg/neogit",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    }
+  }
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()

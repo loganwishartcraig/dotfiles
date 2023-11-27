@@ -122,6 +122,11 @@ map("n", "<leader>dh", "<cmd>DiffviewFileHistory %<CR>", opts)
 map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", opts)
 map("n", "<leader>dr", "<cmd>DiffviewRefresh<CR>", opts)
 map("n", "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<CR>", opts)
+map("n", "<leader>gc", "<cmd>:Neogit commit<CR>", opts)
+map("n", "<leader>gr", "<cmd>:Neogit rebase<CR>", opts)
+map("n", "<leader>gm", "<cmd>:Neogit merge<CR>", opts)
+map("n", "<leader>gl", "<cmd>:Neogit log<CR>", opts)
+map("n", "<leader>gv", "<cmd>:Neogit<CR>", opts)
 
 M.diffview_actions = {
   gotoFile = '<leader>do',
