@@ -99,6 +99,8 @@ return packer.startup(function(use)
     run = 'yes | cp -f ./*.py ~/.config/kitty/' }
   use { 'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons' }
 
+  use "nvim-pack/nvim-spectre"
+
   -- Zenmode
   use { "folke/zen-mode.nvim" }
   use { "folke/twilight.nvim" }

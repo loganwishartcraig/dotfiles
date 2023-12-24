@@ -116,6 +116,13 @@ map("n", "<leader>e", "<CMD>NvimTreeToggle<CR>", opts)
 -- Formatting
 map("n", "<leader>p", "<cmd>lua vim.lsp.buf.format({timeout_ms = 5000, async = true})<CR>", opts)
 
+-- Spectre search
+map("n", "<leader>S", "<cmd>lua require('spectre').toggle()<CR>", opts)
+map("n", "<leader>sw", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", opts)
+map("v", "<leader>sw", "<cmd>lua require('spectre').open_visual()<CR>", opts)
+map("n", "<leader>sf", "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>", opts)
+
+
 -- Git stuff
 map("n", "<leader>dv", "<cmd>DiffviewOpen<CR>", opts)
 map("n", "<leader>dh", "<cmd>DiffviewFileHistory %<CR>", opts)
