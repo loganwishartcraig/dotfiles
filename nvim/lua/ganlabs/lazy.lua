@@ -12,5 +12,12 @@ plugin.setup({
     cmd = {"NvimTreeFindFileToggle", "NvimTreeToggle"},
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = require("ganlabs.plugins.nvim-tree").config
+  },
+  {
+    'nvim-telescope/telescope.nvim', 
+    branch = '0.1.x',
+    cmd = {"Telescope"},
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = require("ganlabs.plugins.telescope").config
   }
 })
