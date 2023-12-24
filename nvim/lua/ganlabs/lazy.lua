@@ -19,5 +19,11 @@ plugin.setup({
     cmd = {"Telescope"},
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = require("ganlabs.plugins.telescope").config
+  },
+  {
+    'akinsho/bufferline.nvim', 
+    event = 'BufAdd',
+    dependencies = {'nvim-tree/nvim-web-devicons'},
+    config = require("ganlabs.plugins.bufferline").config
   }
 })
