@@ -23,7 +23,19 @@ plugin.setup({
   {
     'akinsho/bufferline.nvim', 
     event = 'BufAdd',
+    version = "*", 
     dependencies = {'nvim-tree/nvim-web-devicons'},
     config = require("ganlabs.plugins.bufferline").config
-  }
+  },
+
+  -- Editing
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = require("ganlabs.plugins.nvim-surround").config
+  },
+
+  -- Movement
+  { "loganwishartcraig/vim-kitty-navigator", build = 'yes | cp -f ./*.py ~/.config/kitty/' },
 })
