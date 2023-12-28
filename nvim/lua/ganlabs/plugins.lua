@@ -38,14 +38,6 @@ packer.init {
 }
 
 return packer.startup(function(use)
-  -- Core
-  use "wbthomason/packer.nvim"
-  use "nvim-lua/popup.nvim"
-  use "nvim-lua/plenary.nvim"
-
-  -- Colorscheme
-  use { "catppuccin/nvim", as = "catppuccin" }
-  -- use { "ronisbr/nano-theme.nvim" }
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"
@@ -65,39 +57,10 @@ return packer.startup(function(use)
   use "stevearc/conform.nvim"
   use "mfussenegger/nvim-lint"
 
-  -- Telescope
-  use "nvim-telescope/telescope.nvim"
-  use {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    after = "nvim-treesitter",
-    requires = "nvim-treesitter/nvim-treesitter",
-  }
-
-  -- Treesitter
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  }
-
-  -- Explorer
-  use "kyazdani42/nvim-web-devicons"
-  use "kyazdani42/nvim-tree.lua"
-
-  -- Motions
-  use "bkad/CamelCaseMotion"
-
   -- Visual Aids
   use "jinh0/eyeliner.nvim"
 
   -- Editor
-  use "windwp/nvim-autopairs"
-  use "windwp/nvim-ts-autotag"
-  use "numToStr/Comment.nvim"
-  use "JoosepAlviste/nvim-ts-context-commentstring"
-  use "machakann/vim-sandwich"
-  use { "loganwishartcraig/vim-kitty-navigator",
-    run = 'yes | cp -f ./*.py ~/.config/kitty/' }
-  use { 'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons' }
 
   use "nvim-pack/nvim-spectre"
 
