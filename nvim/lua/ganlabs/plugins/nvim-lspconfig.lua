@@ -84,7 +84,11 @@ return {
     -- mason_lspc.setup()
     mason_lspconfig.setup_handlers {
       function(server_name) 
+        -- Skip setting up eslint as an LSP server.
+        -- We instead rely on nvim-lint to handle this
+        -- if server_name ~= 'eslint' then
         lspconfig[server_name].setup(server_opts)
+        -- end
       end,
       ['tsserver'] = handlers.build_handler(server_opts, 'tsserver'),
       ['jsonls'] = handlers.build_handler(server_opts, 'jsonls'),

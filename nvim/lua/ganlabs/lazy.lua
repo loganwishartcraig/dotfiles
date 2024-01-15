@@ -163,13 +163,20 @@ plugin.setup({
   },
 
   -- Formatting
-
   {
     "stevearc/conform.nvim",
     dependencies = { "mason.nvim" },
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     cmd = {"ConformInfo", "Format"},
     config = require('ganlabs.plugins.conform').config,
+  },
+
+  -- Linting
+  {
+    "mfussenegger/nvim-lint",
+    dependencies = { "mason.nvim" },
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    config = require('ganlabs.plugins.nvim-lint').config,
   },
 
 })
