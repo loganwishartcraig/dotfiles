@@ -1,4 +1,4 @@
-local handlers = require("ganlabs.lsp.handlers")
+local handlers = require("ganlabs.lsp-config.handlers")
 
 local function organize_imports()
   local params = {
@@ -15,7 +15,7 @@ return {
     client.server_capabilities.documentFormattingProvider = false
   end,
   commands = {
-    OrganizeImports = {
+    OR = {
       organize_imports,
       description = "Organize Imports"
     }

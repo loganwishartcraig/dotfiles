@@ -64,7 +64,7 @@ plugin.setup({
   { "bkad/CamelCaseMotion" },
   { 
     "numToStr/Comment.nvim", 
-    config = require('ganlabs.plugins.comment').confg
+    config = require('ganlabs.plugins.comment').config
   },
 
   -- Movement
@@ -138,8 +138,28 @@ plugin.setup({
             end,
           },
           opts = require('ganlabs.plugins.luasnip').opts,
-        },
+        }
       }
     } 
+  },
+
+  -- LSP
+  {
+   "williamboman/mason.nvim",
+    cmd = "Mason",
+    build = ":MasonUpdate",
+    opts = require('ganlabs.plugins.mason').opts,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    -- event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    opts = require('ganlabs.plugins.nvim-lspconfig').opts,
+    config = require('ganlabs.plugins.nvim-lspconfig').config,
+    dependencies = {
+      "hrsh7th/nvim-cmp",
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
   }
+
 })

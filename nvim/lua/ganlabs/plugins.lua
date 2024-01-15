@@ -40,9 +40,6 @@ packer.init {
 return packer.startup(function(use)
 
   -- LSP
-  use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim"
-  use "neovim/nvim-lspconfig"
   use "stevearc/conform.nvim"
   use "mfussenegger/nvim-lint"
 
@@ -55,7 +52,6 @@ return packer.startup(function(use)
   use { "folke/twilight.nvim" }
 
   -- Git
-  use 'akinsho/git-conflict.nvim'
   use { -- Could (should) be lazy loaded
     'pwntester/octo.nvim',
     requires = {
