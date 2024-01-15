@@ -5,11 +5,12 @@ M.config = function()
       check_ts = true,
   }
 
-  local cmp_autopairs = require('nvim-autopairs.completion.cmp')
   local cmp_ok, cmp = pcall(require, "cmp")
   if not cmp_ok then
       return
   end
+
+  local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
   cmp.event:on(
       'confirm_done',

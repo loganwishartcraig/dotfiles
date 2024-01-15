@@ -30,6 +30,25 @@ plugin.setup({
     dependencies = {'nvim-tree/nvim-web-devicons'},
     config = require("ganlabs.plugins.bufferline").config
   },
+  {
+    'nvim-pack/nvim-spectre',
+    event = 'VeryLazy',
+    opts = {}
+  },
+  { 
+    "jinh0/eyeliner.nvim",
+    event = 'BufAdd',
+    opts = require("ganlabs.plugins.eyeliner").opts
+  },
+  { 
+    "nvim-lualine/lualine.nvim",
+    opts = require("ganlabs.plugins.lualine").opts
+  },
+  { 
+    "lukas-reineke/indent-blankline.nvim", 
+    main = "ibl",
+    opts = {} 
+  },
 
   -- Editing
   {
@@ -73,5 +92,33 @@ plugin.setup({
     "JoosepAlviste/nvim-ts-context-commentstring",  
     event="InsertEnter",
     opts = {}
+  },
+
+  -- Completion 
+  {
+    "hrsh7th/nvim-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
+    config = require('ganlabs.plugins.nvim-cmp').config,
+    dependencies = { 
+      { 
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-cmdline",
+        "saadparwaiz1/cmp_luasnip",
+        "onsails/lspkind.nvim",
+        {
+          "L3MON4D3/LuaSnip",
+          build = "make install_jsregexp",
+          dependencies = {
+            "rafamadriz/friendly-snippets",
+            config = function()
+              require("luasnip.loaders.from_vscode").lazy_load()
+            end,
+          },
+          opts = require('ganlabs.plugins.luasnip').opts,
+        },
+      }
+    } 
   }
 })

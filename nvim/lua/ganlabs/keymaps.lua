@@ -38,7 +38,8 @@ map("v", "<A-k>", ":m .-2<CR>==", opts)
 -- Easiser splits
 map("n", "<leader><bar>", ":vsplit<CR>", opts)
 map("n", "<leader>-", ":split<CR>", opts)
-map("n", "<leader>q", ":close<CR>", opts)
+map("n", "<leader>q", ":enew<bar>bd #<CR>", opts)
+map("n", "<leader>Q", ":close<CR>", opts)
 
 -- Clear search results on <F3>
 map("n", "<F3>", ":noh<CR>", opts)

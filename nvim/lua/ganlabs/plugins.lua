@@ -47,9 +47,6 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip"
   use "hrsh7th/cmp-nvim-lsp"
 
-  -- snippets
-  use "L3MON4D3/LuaSnip"
-
   -- LSP
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
@@ -58,18 +55,12 @@ return packer.startup(function(use)
   use "mfussenegger/nvim-lint"
 
   -- Visual Aids
-  use "jinh0/eyeliner.nvim"
 
   -- Editor
-
-  use "nvim-pack/nvim-spectre"
 
   -- Zenmode
   use { "folke/zen-mode.nvim" }
   use { "folke/twilight.nvim" }
-
-  -- Statusline
-  use "nvim-lualine/lualine.nvim"
 
   -- Git
   use 'lewis6991/gitsigns.nvim'
