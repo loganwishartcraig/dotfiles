@@ -39,14 +39,6 @@ packer.init {
 
 return packer.startup(function(use)
 
-  -- cmp plugins
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-cmdline"
-  use "saadparwaiz1/cmp_luasnip"
-  use "hrsh7th/cmp-nvim-lsp"
-
   -- LSP
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
@@ -63,8 +55,6 @@ return packer.startup(function(use)
   use { "folke/twilight.nvim" }
 
   -- Git
-  use 'lewis6991/gitsigns.nvim'
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
   use 'akinsho/git-conflict.nvim'
   use { -- Could (should) be lazy loaded
     'pwntester/octo.nvim',

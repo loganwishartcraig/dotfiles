@@ -136,11 +136,6 @@ map("n", "<leader>gm", "<cmd>:Neogit merge<CR>", opts)
 map("n", "<leader>gl", "<cmd>:Neogit log<CR>", opts)
 map("n", "<leader>gv", "<cmd>:Neogit<CR>", opts)
 
-M.diffview_actions = {
-  gotoFile = '<leader>do',
-  toggleStageEntry = '<leader>ds',
-}
-
 M.gitsigns = function(gs, bufnr)
   --[[ bf_map(bufnr, 'n', ']h', function()
     if vim.wo.diff then return ']h' end

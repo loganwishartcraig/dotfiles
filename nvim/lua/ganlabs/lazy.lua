@@ -47,7 +47,11 @@ plugin.setup({
   { 
     "lukas-reineke/indent-blankline.nvim", 
     main = "ibl",
-    opts = {} 
+    opts = {},
+  },
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
   },
 
   -- Editing
@@ -92,6 +96,23 @@ plugin.setup({
     "JoosepAlviste/nvim-ts-context-commentstring",  
     event="InsertEnter",
     opts = {}
+  },
+
+  -- git
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = require("ganlabs.plugins.gitsigns").opts
+  }, 
+
+  { 
+    'sindrets/diffview.nvim', 
+    cmd = {"DiffviewOpen", "DiffviewFileHistory"},
+    opts = require("ganlabs.plugins.diffview").opts,
+    dependencies = { 'nvim-lua/plenary.nvim' }, 
+  },
+  { 
+    'akinsho/git-conflict.nvim',
+    opts = require("ganlabs.plugins.git-conflict").opts
   },
 
   -- Completion 
