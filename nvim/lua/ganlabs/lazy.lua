@@ -152,7 +152,7 @@ plugin.setup({
   },
   {
     "neovim/nvim-lspconfig",
-    -- event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     opts = require('ganlabs.plugins.nvim-lspconfig').opts,
     config = require('ganlabs.plugins.nvim-lspconfig').config,
     dependencies = {
@@ -160,6 +160,16 @@ plugin.setup({
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
-  }
+  },
+
+  -- Formatting
+
+  {
+    "stevearc/conform.nvim",
+    dependencies = { "mason.nvim" },
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    cmd = {"ConformInfo", "Format"},
+    config = require('ganlabs.plugins.conform').config,
+  },
 
 })

@@ -37,7 +37,8 @@ end
 
 local function on_attach(client, bufnr)
   lsp_highlight_document(client)
-  lsp_format_on_save(client, bufnr)
+  -- Disable LSP formatting in favor of conform.nvim
+  -- lsp_format_on_save(client, bufnr)
 end
 
 return {
