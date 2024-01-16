@@ -31,15 +31,6 @@ return {
     local lspkind = require("lspkind")
     local luasnip = require("luasnip")
 
-    lspkind.init({
-      preset = 'codicons',
-      -- Add custom symbols
-      symbol_map = {
-        Copilot = "",
-        Snippet = ""
-      },
-    })
-
     cmp.setup({
       snippet = {
         expand = function(args)
@@ -53,17 +44,40 @@ return {
       },
 
       formatting = {
-        format = lspkind.cmp_format({
-          mode = 'symbol',
-          maxwidth = 50,            -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
-          ellipsis_char = '...',
-          show_labelDetails = true, -- show labelDetails in menu. Disabled by default
-          -- The function below will be called before any actual modifications from lspkind
-          -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-          -- before = function (entry, vim_item)
-          --  return vim_item
-          -- end
-        })
+        format = function(entry, vim_item)
+          local item_with_kind = lspkind.cmp_format({
+            mode = 'symbol',
+            maxwidth = 50,            -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+            ellipsis_char = '...',
+            show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+            -- The function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            -- before = function (entry, vim_item)
+            --  return vim_item
+            -- end
+            preset = 'codicons',
+            -- Add custom symbols
+            symbol_map = {
+              Copilot = "",
+              Snippet = ""
+            },
+          })(entry, vim_item)
+
+          -- https://github.com/ditsuke/nvim-config/blob/5d22ea749ef64b5d3fec0ad3d6ac457e6dcbeb22/lua/ditsuke/plugins/editor/cmp.lua#L243
+          item_with_kind.menu = ""
+          local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
+          if completion_context ~= nil and completion_context ~= "" then
+            -- local truncated_context = string.sub(completion_context, -30)
+            local truncated_context = string.sub(completion_context, 1, 30)
+            if truncated_context ~= completion_context then
+              truncated_context = "..." .. truncated_context
+            end
+            item_with_kind.menu = item_with_kind.menu .. " " .. truncated_context
+          end
+
+          item_with_kind.menu_hl_group = "CmpItemAbbr"
+          return item_with_kind
+        end
       },
 
       sources = cmp.config.sources({
