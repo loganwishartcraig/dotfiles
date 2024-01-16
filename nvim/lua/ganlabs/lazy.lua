@@ -48,7 +48,7 @@ plugin.setup({
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     main = "ibl",
-    opts = {},
+    opts = require("ganlabs.plugins.indent-blankline").opts
   },
   {
     'stevearc/dressing.nvim',
