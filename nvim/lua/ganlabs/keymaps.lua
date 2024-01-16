@@ -68,9 +68,11 @@ map("n", "<leader>m", "vi{:sort<CR>", opts)
 -- LSP
 M.lsp_keymaps = function(bufnr)
   bf_map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  bf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  -- bf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  bf_map(bufnr, "n", "gd", "<cmd>Trouble lsp_definitions<CR>", opts) -- Let Telescope list references
   bf_map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  bf_map(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  -- bf_map(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  bf_map(bufnr, "n", "gt", "<cmd>Trouble lsp_type_definition<CR>", opts) -- Let Telescope list references
   bf_map(bufnr, "n", "<leader>K", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
   --bf_map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
@@ -101,6 +103,9 @@ map("n", "<leader>fr", "<CMD>Telescope lsp_references<CR>", opts)
 map("n", "<leader>fd", "<CMD>Telescope lsp_definitions<CR>", opts)
 map("n", "<leader>fi", "<CMD>Telescope lsp_implementations<CR>", opts)
 map("n", "<leader>fh", "<CMD>Telescope oldfiles<CR>", opts)
+
+-- Diagnostics
+map("n", "<leader>x", "<CMD>TroubleToggle workspace_diagnostics<CR>")
 
 -- Comment toggling
 M.commments = {

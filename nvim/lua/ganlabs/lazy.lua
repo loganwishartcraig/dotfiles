@@ -64,6 +64,12 @@ plugin.setup({
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     config = require("ganlabs.plugins.vim-illuminate").config
   },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = { "Trouble", "TroubleToggle" },
+    opts = require("ganlabs.plugins.trouble").opts
+  },
 
   -- Editing
   {

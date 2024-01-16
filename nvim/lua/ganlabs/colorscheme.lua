@@ -27,6 +27,7 @@ catppuccin.setup({
       show_root = true,          -- makes the root folder not transparent
       transparent_panel = false, -- make the panel transparent
     },
+    -- lsp_trouble = true, -- Didn't like how this looked
     mason = true,
     illuminate = true,
     indent_blankline = {
