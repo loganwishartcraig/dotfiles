@@ -18,12 +18,22 @@ end
 
 vim.g.catppuccin_flavour = flavor -- latte, frappe, macchiato, mocha
 catppuccin.setup({
-  integration = {
+  integrations = {
+    cmp = true,
+    gitsigns = true,
+    treesitter = true,
     nvimtree = {
       enabled = true,
-      show_root = true, -- makes the root folder not transparent
+      show_root = true,          -- makes the root folder not transparent
       transparent_panel = false, -- make the panel transparent
-    }
+    },
+    mason = true,
+    illuminate = true,
+    indent_blankline = {
+      enabled = true,
+      scope_color = "lavender", -- catppuccin color (eg. `lavender`) Default: text
+      colored_indent_levels = false,
+    },
   }
 })
 

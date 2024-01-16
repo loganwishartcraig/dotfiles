@@ -7,27 +7,27 @@ plugin.setup({
   "folke/which-key.nvim",
 
   -- Theme
-  { "catppuccin/nvim", name = "catpuccin", priority = 1000 },
+  { "catppuccin/nvim",     name = "catpuccin", priority = 1000 },
 
   -- Editor
   {
     "nvim-tree/nvim-tree.lua",
-    cmd = {"NvimTreeFindFileToggle", "NvimTreeToggle"},
+    cmd = { "NvimTreeFindFileToggle", "NvimTreeToggle" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = require("ganlabs.plugins.nvim-tree").config
   },
   {
-    'nvim-telescope/telescope.nvim', 
+    'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
-    cmd = {"Telescope"},
+    cmd = { "Telescope" },
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = require("ganlabs.plugins.telescope").config
   },
   {
-    'akinsho/bufferline.nvim', 
+    'akinsho/bufferline.nvim',
     event = 'BufAdd',
-    version = "*", 
-    dependencies = {'nvim-tree/nvim-web-devicons'},
+    version = "*",
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = require("ganlabs.plugins.bufferline").config
   },
   {
@@ -35,23 +35,34 @@ plugin.setup({
     event = 'VeryLazy',
     opts = {}
   },
-  { 
+  {
     "jinh0/eyeliner.nvim",
     event = 'BufAdd',
     opts = require("ganlabs.plugins.eyeliner").opts
   },
-  { 
+  {
     "nvim-lualine/lualine.nvim",
     opts = require("ganlabs.plugins.lualine").opts
   },
-  { 
-    "lukas-reineke/indent-blankline.nvim", 
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     main = "ibl",
     opts = {},
   },
   {
     'stevearc/dressing.nvim',
     opts = {},
+  },
+  {
+    'echasnovski/mini.indentscope',
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    config = require("ganlabs.plugins.mini-indentscope").config
+  },
+  {
+    "RRethy/vim-illuminate",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    config = require("ganlabs.plugins.vim-illuminate").config
   },
 
   -- Editing
@@ -62,8 +73,8 @@ plugin.setup({
     config = require("ganlabs.plugins.nvim-surround").config
   },
   { "bkad/CamelCaseMotion" },
-  { 
-    "numToStr/Comment.nvim", 
+  {
+    "numToStr/Comment.nvim",
     config = require('ganlabs.plugins.comment').config
   },
 
@@ -71,30 +82,30 @@ plugin.setup({
   { "loganwishartcraig/vim-kitty-navigator", build = 'yes | cp -f ./*.py ~/.config/kitty/' },
 
   -- TresSitter
-  { 
+  {
     "nvim-treesitter/nvim-treesitter",
-    version = false, 
+    version = false,
     build = ":TSUpdate",
     event = { "VeryLazy" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    dependencies = { 
+    dependencies = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
     },
     config = require("ganlabs.plugins.treesitter").config
   },
-  { 
+  {
     "windwp/nvim-ts-autotag",
-    event="InsertEnter",
+    event = "InsertEnter",
     opts = {}
   },
-  { 
-    "windwp/nvim-autopairs", 
-    event="InsertEnter",
-    config = require("ganlabs.plugins.nvim-autopairs").config 
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = require("ganlabs.plugins.nvim-autopairs").config
   },
-  { 
-    "JoosepAlviste/nvim-ts-context-commentstring",  
-    event="InsertEnter",
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    event = "InsertEnter",
     opts = {}
   },
 
@@ -102,26 +113,26 @@ plugin.setup({
   {
     "lewis6991/gitsigns.nvim",
     opts = require("ganlabs.plugins.gitsigns").opts
-  }, 
-
-  { 
-    'sindrets/diffview.nvim', 
-    cmd = {"DiffviewOpen", "DiffviewFileHistory"},
-    opts = require("ganlabs.plugins.diffview").opts,
-    dependencies = { 'nvim-lua/plenary.nvim' }, 
   },
-  { 
+
+  {
+    'sindrets/diffview.nvim',
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    opts = require("ganlabs.plugins.diffview").opts,
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
+  {
     'akinsho/git-conflict.nvim',
     opts = require("ganlabs.plugins.git-conflict").opts
   },
 
-  -- Completion 
+  -- Completion
   {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
     config = require('ganlabs.plugins.nvim-cmp').config,
-    dependencies = { 
-      { 
+    dependencies = {
+      {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
@@ -140,12 +151,12 @@ plugin.setup({
           opts = require('ganlabs.plugins.luasnip').opts,
         }
       }
-    } 
+    }
   },
 
   -- LSP
   {
-   "williamboman/mason.nvim",
+    "williamboman/mason.nvim",
     cmd = "Mason",
     build = ":MasonUpdate",
     opts = require('ganlabs.plugins.mason').opts,
@@ -167,7 +178,7 @@ plugin.setup({
     "stevearc/conform.nvim",
     dependencies = { "mason.nvim" },
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-    cmd = {"ConformInfo", "Format"},
+    cmd = { "ConformInfo", "Format" },
     config = require('ganlabs.plugins.conform').config,
   },
 
