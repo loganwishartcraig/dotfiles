@@ -24,7 +24,7 @@ local function get_lsp_completion_context(completion, source)
 end
 
 return {
-  config = function() 
+  config = function()
     -- vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 
     local cmp = require("cmp")
@@ -33,7 +33,7 @@ return {
 
     lspkind.init({
       preset = 'codicons',
-      -- Add custom symbols 
+      -- Add custom symbols
       symbol_map = {
         Copilot = "",
         Snippet = ""
@@ -50,13 +50,13 @@ return {
       window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
-      }, 
+      },
 
       formatting = {
         format = lspkind.cmp_format({
-          mode = 'symbol', 
-          maxwidth = 50, -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
-          ellipsis_char = '...', 
+          mode = 'symbol',
+          maxwidth = 50,            -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+          ellipsis_char = '...',
           show_labelDetails = true, -- show labelDetails in menu. Disabled by default
           -- The function below will be called before any actual modifications from lspkind
           -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
@@ -73,20 +73,21 @@ return {
       }, {
         { name = "buffer" },
       }),
-   
+
       mapping = {
         ["<Up>"] = cmp.mapping.select_prev_item(),
         ["<Down>"] = cmp.mapping.select_next_item(),
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
         ["<CR>"] = cmp.mapping.confirm { select = true },
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable() 
-          -- that way you will only jump inside the snippet region
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- that way you will only jump inside the snippet region
           elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_locally_jumpable()
           elseif has_words_before() then
@@ -130,6 +131,5 @@ return {
         { name = 'cmdline' }
       })
     })
-
   end
 }
