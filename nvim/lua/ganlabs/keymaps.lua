@@ -72,7 +72,7 @@ M.lsp_keymaps = function(bufnr)
   bf_map(bufnr, "n", "gd", "<cmd>Trouble lsp_definitions<CR>", opts) -- Let Telescope list references
   bf_map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   -- bf_map(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-  bf_map(bufnr, "n", "gt", "<cmd>Trouble lsp_type_definition<CR>", opts) -- Let Telescope list references
+  bf_map(bufnr, "n", "gt", "<cmd>Trouble lsp_type_definitions<CR>", opts) -- Let Telescope list references
   bf_map(bufnr, "n", "<leader>K", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
   --bf_map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
