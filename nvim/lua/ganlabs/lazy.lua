@@ -95,7 +95,10 @@ plugin.setup({
     event = { "VeryLazy" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     dependencies = {
-      { "nvim-treesitter/nvim-treesitter-textobjects" },
+      { "nvim-treesitter/nvim-treesitter-textobjects",
+        "windwp/nvim-ts-autotag",
+        "JoosepAlviste/nvim-ts-context-commentstring"
+      },
     },
     config = require("ganlabs.plugins.treesitter").config
   },
@@ -112,7 +115,8 @@ plugin.setup({
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     event = "InsertEnter",
-    opts = {}
+    opts = {},
+    main = "ts_context_commentstring"
   },
 
   -- git

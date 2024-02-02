@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function()
+M.config = function()
   local maps = require('ganlabs.keymaps').treesitter_textobjects
   require("nvim-treesitter.configs").setup {
     -- ensure_installed = "all",
@@ -19,9 +19,6 @@ M.setup = function()
     indent = {
       enable = true,
     },
-    context_commentstring = {
-      enable = true,
-    },
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -36,7 +33,7 @@ M.setup = function()
         enable = true,
         lookahead = true,
         keymaps = maps.select,
-        include_surrounding_whitespace = true
+        include_surrounding_whitespace = false
       },
       swap = {
         enable = true,
