@@ -127,13 +127,22 @@ plugin.setup({
 
   {
     'sindrets/diffview.nvim',
-    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    event = "VeryLazy",
     opts = require("ganlabs.plugins.diffview").opts,
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = { 'nvim-lua/plenary.nvim', 'akinsho/git-conflict.nvim' },
   },
   {
     'akinsho/git-conflict.nvim',
+    event = "VeryLazy",
     opts = require("ganlabs.plugins.git-conflict").opts
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = { "LazyGit" },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
   },
 
   -- Completion
@@ -188,7 +197,7 @@ plugin.setup({
     "stevearc/conform.nvim",
     dependencies = { "mason.nvim" },
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-    cmd = { "ConformInfo", "Format" },
+    cmd = { "ConformInfo", "Format", "FormatDisable", "FormatEnable" },
     config = require('ganlabs.plugins.conform').config,
   },
 

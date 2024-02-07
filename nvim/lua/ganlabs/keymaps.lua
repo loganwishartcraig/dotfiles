@@ -105,8 +105,14 @@ map("n", "<leader>fd", "<CMD>Telescope lsp_definitions<CR>", opts)
 map("n", "<leader>fi", "<CMD>Telescope lsp_implementations<CR>", opts)
 map("n", "<leader>fh", "<CMD>Telescope oldfiles<CR>", opts)
 
+-- Tab navigation
+map("n", "<leader>1", "1gt", opts)
+map("n", "<leader>2", "1gt", opts)
+map("n", "<leader>3", "1gt", opts)
+map("n", "<leader>0", "<CMD>tablast<CR>", opts)
+
 -- Diagnostics
-map("n", "<leader>x", "<CMD>TroubleToggle workspace_diagnostics<CR>")
+map("n", "<leader>X", "<CMD>TroubleToggle workspace_diagnostics<CR>")
 
 -- Comment toggling
 M.commments = {
@@ -141,6 +147,7 @@ map("n", "<leader>gr", "<cmd>:Neogit rebase<CR>", opts)
 map("n", "<leader>gm", "<cmd>:Neogit merge<CR>", opts)
 map("n", "<leader>gl", "<cmd>:Neogit log<CR>", opts)
 map("n", "<leader>gv", "<cmd>:Neogit<CR>", opts)
+map('n', "<leader>G", "<cmd>:LazyGit<CR>", opts)
 
 M.gitsigns = function(gs, bufnr)
   --[[ bf_map(bufnr, 'n', ']h', function()

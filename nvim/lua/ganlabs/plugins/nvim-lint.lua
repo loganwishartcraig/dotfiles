@@ -1,11 +1,13 @@
+local js_linters = { "eslint" }
+
 return {
   config = function()
     require("lint").linters_by_ft = {
       jsonlint = { "jsonlint" },
-      javascript = { "eslint_d" },
-      typescript = { "eslint_d" },
-      typescriptreact = { "eslint_d" },
-      javascriptreact = { "eslint_d" },
+      javascript = js_linters,
+      typescript = js_linters,
+      typescriptreact = js_linters,
+      javascriptreact = js_linters,
       ['*'] = { 'cspell' }
     }
 
