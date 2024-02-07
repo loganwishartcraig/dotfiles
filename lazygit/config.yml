@@ -1,0 +1,6 @@
+keybinding:
+  universal:
+    prevBlock: '<up>' # go one line up
+    nextBlock: '<down>' # go one line down
+    prevItem: '<left>' # goto the previous block / panel
+    nextItem: '<right>' # goto the next block / panel
