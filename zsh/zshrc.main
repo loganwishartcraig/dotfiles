@@ -1,0 +1,6 @@
+source "${ZDOTDIR:-$HOME}/.zsh/zshrc.env"
+source "${ZDOTDIR:-$HOME}/.zsh/zshrc.alias"
+source "${ZDOTDIR:-$HOME}/.zsh/zshrc.plugin"
+source "${ZDOTDIR:-$HOME}/.zsh/zshrc.kitty"
+source "${ZDOTDIR:-$HOME}/.zsh/zshrc.omp"
+source "${ZDOTDIR:-$HOME}/.zsh/zshrc.work"

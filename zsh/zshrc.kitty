@@ -1,0 +1,13 @@
+## Only do something if we're actually in kitty
+if [[ -z "$KITTY_WINDOW_ID" ]]; then
+  return
+fi
+
+alias s="kitty +kitten ssh"
+
+# Set terminal theme based on system theme
+if [[ ( $(getSystemTheme) == *'Dark'* ) ]]; then
+  kitty @ --password="cavity-guiding-stereo-volley" kitten themes --reload-in=parent Catppuccin-Mocha
+else
+  kitty @ --password="cavity-guiding-stereo-volley" kitten themes --reload-in=parent Catppuccin-Latte
+fi

@@ -1,0 +1,11 @@
+# Ignore apple terminal due to compatibility issues
+if [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then
+  return
+fi
+
+# Set oh-my-posh theme based on system theme
+if [[ ( $(getSystemTheme) == *'Dark'* ) ]]; then
+  eval "$(oh-my-posh init zsh --config ${ZDOTDIR:-$HOME}/.zsh/gantheme-dark.omp.yml)"
+else
+  eval "$(oh-my-posh init zsh --config ${ZDOTDIR:-$HOME}/.zsh/gantheme-light.omp.yml)"
+fi

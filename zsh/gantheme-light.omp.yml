@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version: 2
+final_space: true
+blocks:
+- type: prompt
+  alignment: left
+  segments:
+  - type: session
+    style: plain
+    template: "{{ .UserName }} "
+    background: ""
+    foreground: p:blue
+    text: ""
+    duration: 0s
+    namelength: 0
+  - type: path
+    style: plain
+    template: "{{ .Path }} "
+    properties:
+      folder_icon: ....
+      home_icon: "~"
+      style: agnoster_short
+    background: ""
+    foreground: p:pink
+    text: ""
+    duration: 0s
+    namelength: 0
+  - type: git
+    style: plain
+    template: "{{ .HEAD }} "
+    properties:
+      branch_icon: "\ue725 "
+      cherry_pick_icon: "\ue29b "
+      commit_icon: "\uf417 "
+      fetch_status: false
+      fetch_upstream_icon: false
+      merge_icon: "\ue727 "
+      no_commits_icon: "\uf0c3 "
+      rebase_icon: "\ue728 "
+      revert_icon: "\uf0e2 "
+      tag_icon: "\uf412 "
+    background: ""
+    foreground: p:lavender
+    text: ""
+    duration: 0s
+    namelength: 0
+  - type: text
+    style: plain
+    template: 
+    background: ""
+    foreground: p:closer
+    text: ""
+    duration: 0s
+    namelength: 0
+palette:
+  blue: "#1e66f5"
+  closer: p:os
+  lavender: "#7287FD"
+  os: "#ACB0BE"
+  pink: "#ea76cb"

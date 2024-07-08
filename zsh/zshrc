@@ -1,0 +1,3 @@
+if [[ -s "${ZDOTDIR:-$HOME}/.zsh/zshrc.main" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zsh/zshrc.main"
+fi

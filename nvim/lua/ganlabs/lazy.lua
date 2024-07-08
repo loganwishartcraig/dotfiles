@@ -9,8 +9,10 @@ plugin.setup({
   -- Theme
   {
     "catppuccin/nvim",
-    name = "catpuccin",
-    priority = 1000
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+    config = require("ganlabs.plugins.catppuccin").config
   },
 
   -- Editor
