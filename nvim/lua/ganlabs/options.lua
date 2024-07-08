@@ -9,7 +9,6 @@ local options = {
   pumheight = 10,
   showcmd = false,
   showmode = false,
-  -- showtabline = 2,
   smartcase = true,
   smartindent = true,
   splitbelow = true,
@@ -42,7 +41,7 @@ local options = {
   foldlevel = 300,
   foldmethod = "expr",
   foldexpr = "nvim_treesitter#foldexpr()"
-}
+e
 
 vim.opt.shortmess:append "c"
 
@@ -51,16 +50,6 @@ for k, v in pairs(options) do
 end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
-
-
--- vim.cmd [[set iskeyword+=-]] -- Adds '-' to be considered part of a 'word'
-
--- Auto format on save (delegated to LSP provider)
--- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format({timeout_ms = 5000})]]
-
--- Custom commands
--- :BufOnly - remove all buffers but the focused one
--- vim.api.nvim_add_user_command('BufOnly', '%bdelete|edit #|normal `"', { nargs = 0 })
 
 -- Plugin options
 vim.g.kitty_navigator_no_mappings = 1
