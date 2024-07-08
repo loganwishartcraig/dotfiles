@@ -1,10 +1,20 @@
 local settings = {}
 
 settings.config = function()
+  local actions = require("telescope.actions")
+  local trouble = require('trouble.providers.telescope')
 
-  -- local actions = require "telescope.actions"
   require("telescope").setup {
+    pickers = {
+      find_files = {
+        find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+      }
+    },
     defaults = {
+      mappings = {
+        i = { ["<c-t>"] = trouble.open_with_trouble },
+        n = { ["<c-t>"] = trouble.open_with_trouble },
+      },
       prompt_prefix = " ",
       selection_caret = " ",
       path_display = { "truncate" },
@@ -24,7 +34,6 @@ settings.config = function()
       end
     end,
   })
-
 end
 
 return settings

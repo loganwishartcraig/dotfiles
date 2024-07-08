@@ -7,7 +7,11 @@ plugin.setup({
   "folke/which-key.nvim",
 
   -- Theme
-  { "catppuccin/nvim",     name = "catpuccin", priority = 1000 },
+  {
+    "catppuccin/nvim",
+    name = "catpuccin",
+    priority = 1000
+  },
 
   -- Editor
   {
@@ -20,20 +24,22 @@ plugin.setup({
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     cmd = { "Telescope" },
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = { 'nvim-lua/plenary.nvim', 'folke/trouble.nvim' }, -- require trouble for 'open with trouble'
     config = require("ganlabs.plugins.telescope").config
   },
   {
     'akinsho/bufferline.nvim',
     event = 'BufAdd',
-    version = "*",
+    -- Commented due to https://github.com/akinsho/bufferline.nvim/issues/903
+    -- Should be uncommented when resolved
+    -- version = "*",
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = require("ganlabs.plugins.bufferline").config
   },
   {
     'nvim-pack/nvim-spectre',
     event = 'VeryLazy',
-    opts = {}
+    opts = require("ganlabs.plugins.spectre").opts
   },
   {
     "jinh0/eyeliner.nvim",
@@ -52,7 +58,7 @@ plugin.setup({
   },
   {
     'stevearc/dressing.nvim',
-    opts = {},
+    opts = require("ganlabs.plugins.dressing").opts
   },
   {
     'echasnovski/mini.indentscope',
@@ -79,10 +85,10 @@ plugin.setup({
     config = require("ganlabs.plugins.nvim-surround").config
   },
   { "bkad/CamelCaseMotion" },
-  {
-    "numToStr/Comment.nvim",
-    config = require('ganlabs.plugins.comment').config
-  },
+  -- {
+  --   "numToStr/Comment.nvim",
+  --   config = require('ganlabs.plugins.comment').config
+  -- },
 
   -- Movement
   { "loganwishartcraig/vim-kitty-navigator", build = 'yes | cp -f ./*.py ~/.config/kitty/' },
@@ -90,22 +96,35 @@ plugin.setup({
   -- TresSitter
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false,
+    version = nil,
     build = ":TSUpdate",
     event = { "VeryLazy" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     dependencies = {
-      { "nvim-treesitter/nvim-treesitter-textobjects",
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
         "windwp/nvim-ts-autotag",
-        "JoosepAlviste/nvim-ts-context-commentstring"
       },
     },
-    config = require("ganlabs.plugins.treesitter").config
+    config = require("ganlabs.plugins.treesitter").config,
+    init = function(plugin)
+      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
+      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
+      -- no longer trigger the **nvim-treesitter** module to be loaded in time.
+      -- Luckily, the only things that those plugins need are the custom queries, which we make available
+      -- during startup.
+      require("lazy.core.loader").add_to_rtp(plugin)
+      require("nvim-treesitter.query_predicates")
+    end,
   },
   {
     "windwp/nvim-ts-autotag",
     event = "InsertEnter",
-    opts = {}
+    opts = {
+      opts = {
+        enable_close_on_slash = true
+      }
+    }
   },
   {
     "windwp/nvim-autopairs",
@@ -113,24 +132,30 @@ plugin.setup({
     config = require("ganlabs.plugins.nvim-autopairs").config
   },
   {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    event = "InsertEnter",
+    "folke/ts-comments.nvim",
     opts = {},
-    main = "ts_context_commentstring"
+    event = "VeryLazy"
   },
+  -- {
+  --   "JoosepAlviste/nvim-ts-context-commentstring",
+  --   event = "InsertEnter",
+  --   opts = {},
+  --   main = "ts_context_commentstring"
+  -- },
 
   -- git
   {
     "lewis6991/gitsigns.nvim",
+    event = "VeryLazy",
     opts = require("ganlabs.plugins.gitsigns").opts
   },
 
-  {
-    'sindrets/diffview.nvim',
-    event = "VeryLazy",
-    opts = require("ganlabs.plugins.diffview").opts,
-    dependencies = { 'nvim-lua/plenary.nvim', 'akinsho/git-conflict.nvim' },
-  },
+  -- {
+  --   'sindrets/diffview.nvim',
+  --   event = "VeryLazy",
+  --   opts = require("ganlabs.plugins.diffview").opts,
+  --   dependencies = { 'nvim-lua/plenary.nvim', 'akinsho/git-conflict.nvim' },
+  -- },
   {
     'akinsho/git-conflict.nvim',
     event = "VeryLazy",
@@ -171,6 +196,13 @@ plugin.setup({
         }
       }
     }
+  },
+
+  -- Terminal
+  {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    config = true
   },
 
   -- LSP

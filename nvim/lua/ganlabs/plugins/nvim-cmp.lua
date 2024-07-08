@@ -82,7 +82,7 @@ return {
 
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = "luasnip" },
+        -- { name = "luasnip" }, -- I'm not really using snippets atm
         { name = "path" },
       }, {
         { name = "buffer" },

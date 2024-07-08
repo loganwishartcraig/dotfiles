@@ -7,12 +7,12 @@ M.config = function()
     auto_install = true,
     sync_install = false,
     ignore_install = { "" },
-    autopairs = {
-      enable = true,
-    },
-    autotag = {
-      enable = true,
-    },
+    -- autopairs = {
+    --   enable = true,
+    -- },
+    -- autotag = {
+    --   enable = true,
+    -- },
     highlight = {
       enable = true,
     },

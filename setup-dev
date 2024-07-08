@@ -7,10 +7,14 @@ sudo apt install -y ripgrep fd-find silversearcher-ag
        
 # setup symbolic links to dotfiles
 mkdir -p ${ZDOTDIR:-$HOME}/.config/nvim
+mkdir -p ${ZDOTDIR:-$HOME}/.config/lazygit
 
 ln -s -f ${PWD}/nvim/init.lua ${ZDOTDIR:-$HOME}/.config/nvim/init.lua
 ln -s -f ${PWD}/nvim/lua ${ZDOTDIR:-$HOME}/.config/nvim/lua
 ln -s -f ${PWD}/nvim/spell ${ZDOTDIR:-$HOME}/.config/nvim/spell
+
+ln -s -f ${PWD}/lazygit/config.yml ${ZDOTDIR:-$HOME}/.config/lazygit/config.yml
+
 
 # Function to install neovim using brew
 install_with_brew() {

@@ -58,7 +58,7 @@ return {
       desc = "Re-enable autoformat-on-save",
     })
 
-      -- Format command
+    -- Format command
     vim.api.nvim_create_user_command("Format", function(args)
       local range = nil
       if args.count ~= -1 then
@@ -72,5 +72,3 @@ return {
     end, { range = true })
   end
 }
-
-

@@ -37,5 +37,3 @@ return {
     },
   }
 }
-
-return opts

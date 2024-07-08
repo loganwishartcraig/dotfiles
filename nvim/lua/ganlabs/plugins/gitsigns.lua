@@ -1,6 +1,6 @@
 local keymaps = require('ganlabs.keymaps')
 
-return {
+local M = {
   opts = {
     signs = {
       add = { text = "▎" },
@@ -11,8 +11,10 @@ return {
       untracked = { text = "▎" },
     },
     on_attach = function(buffer)
-      local gs = package.loaded.gitsigns
+      local gs = require('gitsigns')
       keymaps.gitsigns(gs, buffer)
     end
   }
 }
+
+return M

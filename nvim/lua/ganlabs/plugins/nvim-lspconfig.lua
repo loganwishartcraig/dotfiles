@@ -75,7 +75,7 @@ return {
     vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
       border = "rounded",
     })
-    
+
     local server_opts = {
       on_attach = handlers.on_attach,
       capabilities = cmp_capabilities,
@@ -83,17 +83,16 @@ return {
 
     -- mason_lspc.setup()
     mason_lspconfig.setup_handlers {
-      function(server_name) 
+      function(server_name)
         -- Skip setting up eslint as an LSP server.
         -- We instead rely on nvim-lint to handle this
-        -- if server_name ~= 'eslint' then
-        lspconfig[server_name].setup(server_opts)
-        -- end
+        if server_name ~= 'eslint' then
+          lspconfig[server_name].setup(server_opts)
+        end
       end,
       ['tsserver'] = handlers.build_handler(server_opts, 'tsserver'),
       ['jsonls'] = handlers.build_handler(server_opts, 'jsonls'),
       ['lua_ls'] = handlers.build_handler(server_opts, 'lua_ls'),
     }
-
   end
 }

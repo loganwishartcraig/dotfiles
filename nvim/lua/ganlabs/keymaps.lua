@@ -23,6 +23,7 @@ map("n", "<C-Down>", ":resize -5<CR>", opts)
 map("n", "<C-Left>", ":vertical resize -5<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +5<CR>", opts)
 map("n", "<leader>=", "<C-w>=", opts)
+map("n", "<F3>", "<C-w>_", opts)
 
 -- Buffer navigation
 map("n", "<S-l>", ":bnext<CR>", opts)
@@ -38,8 +39,6 @@ map("v", "<A-k>", ":m .-2<CR>==", opts)
 -- Easiser splits
 map("n", "<leader><bar>", ":vsplit<CR>", opts)
 map("n", "<leader>-", ":split<CR>", opts)
-map("n", "<leader>q", ":enew<bar>bd #<CR>", opts)
-map("n", "<leader>Q", ":close<CR>", opts)
 
 -- Clear search results on <F3>
 map("n", "<F3>", ":noh<CR>", opts)
@@ -48,8 +47,11 @@ map("n", "<F3>", ":noh<CR>", opts)
 map("n", "<leader>la", ":e <C-R>=expand('%:h').\"/\"<CR>", { noremap = true })
 
 -- Buffers
-map("n", "<leader>bc", "<cmd>bd<CR>", opts) -- Close buffer
-map("n", "<leader>bk", "<cmd>%bd|e#|bd#<CR>", opts);
+map("n", "<leader>bc", "<cmd>bd<CR>", opts)          -- Close buffer
+map("n", "<leader>bk", "<cmd>%bd|e#|bd#<CR>", opts); -- Close all buffers except current one
+map("n", "<leader>Q", "<cmd>%bd<CR>", opts);         -- Close all buffers
+map("n", "<leader>q", "<CMD>bp|sp|bn|bd<CR>", opts)  -- Close buffer without closing split
+map("n", "<leader>W", ":close<CR>", opts)            -- Close split
 map("n", "[b", "<cmd>BufferLineCyclePrev<CR>", opts)
 map("n", "]b", "<cmd>BufferLineCycleNext<CR>", opts)
 
@@ -63,7 +65,7 @@ map("x", "sp", "\"_dP", opts)
 map("n", "<leader>zz", "1z=E", opts)
 
 -- Block sorting
-map("n", "<leader>m", "vi{:sort<CR>", opts)
+map("n", "<leader>m", "vi{:sort i<CR>", opts)
 
 -- LSP
 M.lsp_keymaps = function(bufnr)
@@ -113,6 +115,9 @@ map("n", "<leader>0", "<CMD>tablast<CR>", opts)
 
 -- Diagnostics
 map("n", "<leader>X", "<CMD>TroubleToggle workspace_diagnostics<CR>")
+
+-- Toggle Term
+map("n", "<leader>T", "<CMD>ToggleTerm size=20 dir=git_dir direction=float name=terminal<CR>")
 
 -- Comment toggling
 M.commments = {
