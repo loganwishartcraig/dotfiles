@@ -1,0 +1,31 @@
+[include]
+	path = ./catppuccin.gitconfig
+[delta]
+	features = catppuccin-latte
+
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[user]
+	name = Logan Wishart-Craig
+	email = loganwishartcraig@gmail.com
+[color]
+    ui = auto
+[merge]
+	ff = only
+[fetch]
+	prune = true
+[rebase]
+	autosquash = true
+[diff]
+	colorMoved = zebra
+[push]
+	default = current
+[rerere]
+	enabled = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

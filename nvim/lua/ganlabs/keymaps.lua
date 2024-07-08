@@ -23,6 +23,7 @@ map("n", "<C-Down>", ":resize -5<CR>", opts)
 map("n", "<C-Left>", ":vertical resize -5<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +5<CR>", opts)
 map("n", "<leader>=", "<C-w>=", opts)
+map("n", "<F3>", "<C-w>_", opts)
 
 -- Buffer navigation
 map("n", "<S-l>", ":bnext<CR>", opts)
@@ -38,7 +39,6 @@ map("v", "<A-k>", ":m .-2<CR>==", opts)
 -- Easiser splits
 map("n", "<leader><bar>", ":vsplit<CR>", opts)
 map("n", "<leader>-", ":split<CR>", opts)
-map("n", "<leader>q", ":close<CR>", opts)
 
 -- Clear search results on <F3>
 map("n", "<F3>", ":noh<CR>", opts)
@@ -47,8 +47,11 @@ map("n", "<F3>", ":noh<CR>", opts)
 map("n", "<leader>la", ":e <C-R>=expand('%:h').\"/\"<CR>", { noremap = true })
 
 -- Buffers
-map("n", "<leader>bc", "<cmd>bd<CR>", opts) -- Close buffer
-map("n", "<leader>bk", "<cmd>%bd|e#|bd#<CR>", opts);
+map("n", "<leader>bc", "<cmd>bd<CR>", opts)          -- Close buffer
+map("n", "<leader>bk", "<cmd>%bd|e#|bd#<CR>", opts); -- Close all buffers except current one
+map("n", "<leader>Q", "<cmd>%bd<CR>", opts);         -- Close all buffers
+map("n", "<leader>q", "<CMD>bp|sp|bn|bd<CR>", opts)  -- Close buffer without closing split
+map("n", "<leader>W", ":close<CR>", opts)            -- Close split
 map("n", "[b", "<cmd>BufferLineCyclePrev<CR>", opts)
 map("n", "]b", "<cmd>BufferLineCycleNext<CR>", opts)
 
@@ -62,18 +65,21 @@ map("x", "sp", "\"_dP", opts)
 map("n", "<leader>zz", "1z=E", opts)
 
 -- Block sorting
-map("n", "<leader>m", "vi{:sort<CR>", opts)
+map("n", "<leader>m", "vi{:sort i<CR>", opts)
 
 -- LSP
 M.lsp_keymaps = function(bufnr)
   bf_map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  bf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  -- bf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  bf_map(bufnr, "n", "gd", "<cmd>Trouble lsp_definitions<CR>", opts) -- Let Telescope list references
   bf_map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  bf_map(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  -- bf_map(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  bf_map(bufnr, "n", "gt", "<cmd>Trouble lsp_type_definitions<CR>", opts) -- Let Telescope list references
   bf_map(bufnr, "n", "<leader>K", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
   --bf_map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  bf_map(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- Let Telescope list references
+  -- bf_map(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- Let Telescope list references
+  bf_map(bufnr, "n", "gr", "<cmd>Trouble lsp_references<CR>", opts)
 
   bf_map(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   bf_map(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
@@ -100,6 +106,18 @@ map("n", "<leader>fr", "<CMD>Telescope lsp_references<CR>", opts)
 map("n", "<leader>fd", "<CMD>Telescope lsp_definitions<CR>", opts)
 map("n", "<leader>fi", "<CMD>Telescope lsp_implementations<CR>", opts)
 map("n", "<leader>fh", "<CMD>Telescope oldfiles<CR>", opts)
+
+-- Tab navigation (nnngt doesn't work for some reason)
+map("n", "<leader>1", "<CMD>tabn 1<CR>", opts)
+map("n", "<leader>2", "<CMD>tabn 2<CR>", opts)
+map("n", "<leader>3", "<CMD>tabn 3<CR>", opts)
+map("n", "<leader>0", "<CMD>tablast<CR>", opts)
+
+-- Diagnostics
+map("n", "<leader>X", "<CMD>TroubleToggle workspace_diagnostics<CR>")
+
+-- Toggle Term
+map("n", "<leader>T", "<CMD>ToggleTerm size=20 dir=git_dir direction=float name=terminal<CR>")
 
 -- Comment toggling
 M.commments = {
@@ -129,16 +147,7 @@ map("n", "<leader>dh", "<cmd>DiffviewFileHistory %<CR>", opts)
 map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", opts)
 map("n", "<leader>dr", "<cmd>DiffviewRefresh<CR>", opts)
 map("n", "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<CR>", opts)
-map("n", "<leader>gc", "<cmd>:Neogit commit<CR>", opts)
-map("n", "<leader>gr", "<cmd>:Neogit rebase<CR>", opts)
-map("n", "<leader>gm", "<cmd>:Neogit merge<CR>", opts)
-map("n", "<leader>gl", "<cmd>:Neogit log<CR>", opts)
-map("n", "<leader>gv", "<cmd>:Neogit<CR>", opts)
-
-M.diffview_actions = {
-  gotoFile = '<leader>do',
-  toggleStageEntry = '<leader>ds',
-}
+map('n', "<leader>G", "<cmd>:LazyGit<CR>", opts)
 
 M.gitsigns = function(gs, bufnr)
   --[[ bf_map(bufnr, 'n', ']h', function()
