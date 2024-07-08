@@ -1,3 +1,8 @@
+[include]
+	path = ./catppuccin.gitconfig
+[delta]
+	features = catppuccin-latte
+
 [init]
 	defaultBranch = main
 [pull]
@@ -17,5 +22,10 @@
 	colorMoved = zebra
 [push]
 	default = current
-[includeIf "gitdir:~/Work/"]
-	path = ~/Work/.gitconfig
+[rerere]
+	enabled = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
