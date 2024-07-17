@@ -1,8 +1,15 @@
+# Vi mode
+bindkey -v
+# Ensures can still use fwd/bwd history search
+bindkey ^R history-incremental-search-backward 
+bindkey ^S history-incremental-search-forward
+
 # FZF Setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --ignore node_modules -g ""' 
 
+# ZSH Plugins (installed via brew)
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fpath=($(brew --prefix)/share/zsh-completions/ $fpath)
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
