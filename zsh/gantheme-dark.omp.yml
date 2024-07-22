@@ -18,7 +18,7 @@ blocks:
     style: plain
     template: "{{ .Path }} "
     properties:
-      folder_icon: ....
+      folder_icon: 
       home_icon: "~"
       style: agnoster_short
     foreground: p:pink
