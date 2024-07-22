@@ -9,7 +9,7 @@
 	name = Logan Wishart-Craig
 	email = loganwishartcraig@gmail.com
 [color]
-    ui = auto
+  ui = auto
 [merge]
 	ff = only
 [fetch]

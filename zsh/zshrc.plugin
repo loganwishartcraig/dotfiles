@@ -13,3 +13,5 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 fpath=($(brew --prefix)/share/zsh-completions/ $fpath)
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Direnv
+eval "$(direnv hook zsh)"

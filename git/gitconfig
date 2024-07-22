@@ -1,5 +1,7 @@
 [include]
 	path = ~/.config/git/gitconfig.catppuccin
+
+[include]
 	path = ~/.config/git/gitconfig.core
 
 
