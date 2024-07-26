@@ -4,8 +4,6 @@ if not status_ok then
 end
 
 plugin.setup({
-  "folke/which-key.nvim",
-
   -- Theme
   {
     "catppuccin/nvim",

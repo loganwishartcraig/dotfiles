@@ -19,6 +19,7 @@ return {
         python = { "isort", "black" },
         html = { { "prettierd", "prettier" } },
         css = { { "prettierd", "prettier" } },
+        json = { 'jq' },
         javascript = js_formatters,
         typescript = js_formatters,
         typescriptreact = js_formatters,

@@ -114,7 +114,8 @@ map("n", "<leader>3", "<CMD>tabn 3<CR>", opts)
 map("n", "<leader>0", "<CMD>tablast<CR>", opts)
 
 -- Diagnostics
-map("n", "<leader>X", "<CMD>TroubleToggle workspace_diagnostics<CR>")
+map("n", "<leader>X", "<CMD>Trouble diagnostics toggle<CR>")
+map("n", "<leader>Y", "<CMD>lua vim.lsp.buf.code_action()<CR>")
 
 -- Toggle Term
 map("n", "<leader>T", "<CMD>ToggleTerm size=20 dir=git_dir direction=float name=terminal<CR>")

@@ -8,10 +8,13 @@ bindkey ^S history-incremental-search-forward
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --ignore node_modules -g ""' 
 
+## Git autocomplete
+autoload -Uz compinit && compinit
+
 # ZSH Plugins (installed via brew)
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fpath=($(brew --prefix)/share/zsh-completions/ $fpath)
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Direnv
+# Direnv -- should be called last
 eval "$(direnv hook zsh)"
