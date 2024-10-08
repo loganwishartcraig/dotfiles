@@ -1,4 +1,4 @@
-local js_formatters = { "eslint_d", { "prettierd", "prettier" } }
+local js_formatters = { "eslint_d", "prettierd", "prettier", stop_after_first = true }
 
 return {
   config = function()

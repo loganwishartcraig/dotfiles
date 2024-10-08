@@ -10,3 +10,5 @@ keybinding:
     nextItem: '<right>' # goto the next block / panel
     goInto: '<space>'
     select: '<enter>'
+    # nextTab: '<right>'
+    # prevTab: '<left>'
