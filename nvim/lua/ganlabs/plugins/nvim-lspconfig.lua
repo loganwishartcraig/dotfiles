@@ -90,7 +90,7 @@ return {
           lspconfig[server_name].setup(server_opts)
         end
       end,
-      ['tsserver'] = handlers.build_handler(server_opts, 'tsserver'),
+      ['ts_ls'] = handlers.build_handler(server_opts, 'ts_ls'),
       ['jsonls'] = handlers.build_handler(server_opts, 'jsonls'),
       ['lua_ls'] = handlers.build_handler(server_opts, 'lua_ls'),
     }
